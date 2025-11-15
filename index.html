@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>iWorker - Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
+    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@700&display=swap" rel="stylesheet">
     <style>
         /* --- DEFINICIÓN DE ANIMACIONES --- */
         
@@ -13,9 +13,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* QUITADO: Animación de pulso para el brillo del título */
+        /* Quitamos la animación de pulse-shadow para un look más limpio */
         /* @keyframes pulse-shadow {
-            0% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); } 
+            0% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); }
             50% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.7); }
             100% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); }
         } */
@@ -44,29 +44,25 @@
         header {
             width: 100%;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            margin-top: -10px; /* CAMBIO: Sube más el header */
+            margin-top: 5vh; 
         }
 
         #logo {
             width: 360px; 
             height: auto;
-            margin-bottom: -40px; /* CAMBIO: Pega más el logo al texto */
-            /* QUITO: filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); */
+            margin-bottom: -20px; /* Acercamos el logo al texto */
+            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); 
         }
 
         h1 {
             font-family: 'Exo 2', sans-serif;
             color: #ff4d00; 
             font-size: 72px; 
-            font-weight: 800; 
+            font-weight: 700; /* CAMBIO: Peso de fuente un poco menos "neón" */
             margin: 0; 
-            /* QUITO: text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); */
-            /* NUEVO: Borde negro para el texto */
-            -webkit-text-stroke: 2px #000; /* Borde negro para navegadores Webkit */
-            text-stroke: 2px #000; /* Borde negro estándar */
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra suave para el texto */
-            letter-spacing: 0.5px; 
-            /* QUITO: animation: pulse-shadow 4s ease-in-out infinite 1.2s; */
+            /* CAMBIO: Eliminamos el text-shadow para un look más limpio */
+            letter-spacing: 1px; /* CAMBIO: Más espacio entre letras para modernizar */
+            /* Eliminamos la animación de pulso, si quieres un brillo sutil, podemos reintroducir un text-shadow más discreto */
         }
 
         #slogan {
@@ -91,7 +87,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px 45px;
-            background: linear-gradient(to right, #ff6b00, #ff4d00); /* Gradiente suave */
+            background-color: #ff4d00;
             color: white;
             font-family: 'Montserrat', sans-serif;
             font-size: 24px;
@@ -100,27 +96,28 @@
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más sutil */
+            box-shadow: 0 10px 30px rgba(255, 77, 0, 0.4); 
             transition: all 0.3s ease;
         }
 
         #download-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra un poco más intensa al pasar el mouse */
+            box-shadow: 0 15px 40px rgba(255, 77, 0, 0.7); 
         }
         
         #download-btn:active {
             transform: translateY(-2px) scale(0.98); 
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); 
+            box-shadow: 0 5px 15px rgba(255, 77, 0, 0.3); 
             transition: all 0.1s ease; 
         }
 
-        #download-btn svg {
+        /* Eliminamos el SVG de Android */
+        /* #download-btn svg {
             width: 30px;
             height: 30px;
             fill: white;
             margin-right: 15px;
-        }
+        } */
 
 
         footer {
@@ -157,17 +154,13 @@
 
     <main>
         <a id="download-btn" href="#">
-            <!-- NUEVO Icono de Google Play Store --><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                <path d="M0 0h24v24H0V0z" fill="none"/>
-                <path d="M3.77 15.65C2.63 15.17 2 14.28 2 12.98v-1.93c0-1.3.63-2.18 1.77-2.66l6.5-2.82L3.77 15.65zM20.23 8.35c1.14.48 1.77 1.37 1.77 2.66v1.93c0 1.3-.63 2.18-1.77 2.66l-6.5 2.82 6.5-7.07zM12 2c-1.3 0-2.3.63-2.82 1.77L4.78 9.5l7.22 3.12 7.22-3.12-4.4-7.73C14.3 2.63 13.3 2 12 2zM4.78 14.5l7.22 3.12 7.22-3.12-4.4 7.73C14.3 21.37 13.3 22 12 22s-2.3-.63-2.82-1.77L4.78 14.5z"/>
-            </svg>
-            <span>DESCARGA</span>
+            <!-- Texto modificado y sin SVG --><span>DESCARGA (Android)</span>
         </a>
     </main>
 
     <footer>
         <p id="trademark">iWorker® 2025 - Todos los derechos reservados.</p>
-        <p id="signature">Diseñado por Enemy</p>
+        <p id="signature">by Enemy</p>
     </footer>
 
 </body>
