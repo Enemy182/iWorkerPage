@@ -4,73 +4,90 @@
     <meta charset="UTF-8">
     <title>iWorker - Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importamos la fuente Montserrat de Google Fonts para un look profesional --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <!-- Importamos la fuente Montserrat de Google Fonts para un look profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Animación para el fondo del gradiente sutil */
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Animación de aparición suave */
+        /* --- DEFINICIÓN DE ANIMACIONES --- */
+        
+        /* Animación de aparición suave (ya la tenías) */
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* NUEVA: Animación de flotación para el logo */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* NUEVA: Animación de pulso para el brillo del título */
+        @keyframes pulse-shadow {
+            0% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); }
+            50% { text-shadow: 0 0 40px rgba(255, 77, 0, 0.9); }
+            100% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); }
+        }
+        /* --- FIN DE ANIMACIONES --- */
+
+
         body {
             font-family: 'Montserrat', sans-serif; /* Usamos Montserrat como fuente principal */
             display: flex;
-            flex-direction: column; /* Para alinear elementos verticalmente */
-            justify-content: space-between; /* Espacio entre el logo/texto y el footer */
+            flex-direction: column; 
+            justify-content: space-between; 
             align-items: center;
             min-height: 100vh;
             color: #ffffff;
             margin: 0;
             padding: 20px;
-            box-sizing: border-box; /* Asegura que el padding no cause scroll */
+            box-sizing: border-box; 
 
             /* Fondo con bg.jpg y gradiente */
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%), url('bg.jpg');
-            background-size: cover; /* Cubre toda la pantalla */
-            background-position: center center; /* Centra la imagen */
+            background-size: cover; 
+            background-position: center center; 
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll (si hubiera) */
-            
-            /* Sutil animación de fondo para darle vida, aunque la imagen sea fija */
-            /* animation: gradient-animation 20s ease infinite; /* Desactivada por ahora, ya que la imagen es fija */
+            background-attachment: fixed; 
         }
 
         header {
             width: 100%;
             text-align: center;
-            margin-top: 5vh; /* Margen superior para el logo */
+            margin-top: 5vh; 
+            /* Animación de aparición */
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         #logo {
-            width: 150px; /* Logo más grande */
+            /* CAMBIO: Logo mucho más grande */
+            width: 280px; 
             height: auto;
             margin-bottom: 25px;
-            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); /* Sombra más pronunciada */
+            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); 
+            
+            /* NUEVO: Animación de flotación. Empieza 1.2s después */
+            animation: float 6s ease-in-out infinite 1.2s;
         }
 
         h1 {
             color: #ff4d00; /* Naranja iWorker */
-            font-size: 68px; /* Todavía más grande y llamativo */
-            font-weight: 800; /* Extra bold para Montserrat */
+            font-size: 68px; 
+            font-weight: 800; 
             margin: 0;
-            text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); /* Brillo más intenso */
-            letter-spacing: -2px; /* Ajuste de espaciado para un look más compacto */
+            text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); 
+            letter-spacing: -2px; 
+            
+            /* NUEVO: Animación de pulso. Empieza 1.2s después */
+            animation: pulse-shadow 4s ease-in-out infinite 1.2s;
         }
 
         #slogan {
-            font-size: 22px; /* Eslogan también más grande */
+            font-size: 22px; 
             color: #ccc;
             margin-top: 15px;
             font-style: italic;
-            font-weight: 400; /* Regular para el eslogan */
+            font-weight: 400; 
             line-height: 1.4;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         }
@@ -78,34 +95,51 @@
         footer {
             width: 100%;
             text-align: center;
-            margin-bottom: 25px; /* Margen inferior para el footer */
+            margin-bottom: 25px; 
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            animation-delay: 0.2s; /* Un pequeño delay para que aparezca después del contenido principal */
-            animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
-            opacity: 0; /* Empieza invisible para la animación */
+            animation-delay: 0.2s; 
+            animation-fill-mode: forwards; 
+            opacity: 0; 
         }
 
-        #support-text {
-            font-size: 15px;
+        /* NUEVO: Estilo para el texto de marca registrada */
+        #trademark {
+            font-size: 14px;
             color: #999;
             line-height: 1.5;
-            max-width: 350px;
-            margin: 0 auto;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* NUEVO: Estilo para tu firma */
+        #signature {
+            font-size: 12px;
+            color: #666; /* Más sutil */
+            margin-top: 5px;
+            font-style: italic;
+            font-weight: 300;
         }
     </style>
 </head>
 <body>
     
-    <!-- Header para el logo y el texto principal --><header>
-        <!-- Logo en el centro superior --><img src="logo.png" alt="iWorker Logo" id="logo">
+    <!-- Header para el logo y el texto principal -->
+    <header>
+        <!-- Logo en el centro superior -->
+        <img src="logo.png" alt="iWorker Logo" id="logo">
         
-        <!-- Nombre de la app con la nueva fuente --><h1>iWorker</h1>
+        <!-- Nombre de la app con la nueva fuente -->
+        <h1>iWorker</h1>
         
-        <!-- Eslogan --><p id="slogan">Desarrolla tu potencial al máximo.</p>
+        <!-- Eslogan -->
+        <p id="slogan">Desarrolla tu potencial al máximo.</p>
     </header>
 
-    <!-- Footer para el texto de soporte --><footer>
-        <p id="support-text">Este sitio se utiliza para los procesos de soporte y verificación de la app.</p>
+    <!-- Footer para el texto de soporte -->
+    <footer>
+        <!-- CAMBIO: Texto de footer actualizado -->
+        <p id="trademark">iWorker® 2025 - Todos los derechos reservados.</p>
+        <p id="signature">Diseñado por Enemy</p>
     </footer>
 
 </body>
