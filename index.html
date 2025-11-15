@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>iWorker - Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
+    <!-- Importamos Montserrat (para el texto) y Russo One (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Russo+One&display=swap" rel="stylesheet">
     <style>
         /* --- DEFINICIÓN DE ANIMACIONES --- */
         
@@ -13,11 +13,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse-shadow {
-            0% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); } /* Sombra más sutil */
-            50% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.7); }
-            100% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); }
-        }
+        /* Quité la animación pulse-shadow del h1 para un look más sobrio */
+
         /* --- FIN DE ANIMACIONES --- */
 
 
@@ -43,33 +40,39 @@
         header {
             width: 100%;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            margin-top: 5vh; /* Se mantiene para que el header no esté pegado arriba del todo */
+            margin-top: 5vh; /* Ajuste para que el header esté más arriba */
+        }
+
+        #logo-container {
+            position: relative; /* Para que el texto de iWorker se pueda superponer */
+            display: inline-block; /* Para que el background-color y border-radius funcionen bien */
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro circular */
+            padding: 20px; /* Espacio alrededor del logo dentro del círculo */
+            margin-bottom: -40px; /* Superpone el logo al h1 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra para el contenedor del logo */
         }
 
         #logo {
-            width: 360px; 
+            width: 400px; /* Logo más grande */
             height: auto;
-            margin-bottom: -15px; /* Superpone un poco el logo sobre el texto */
             filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); 
-            /* Quité la animación de latido para un look más sobrio */
         }
 
         h1 {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Russo One', sans-serif; /* Nueva fuente Russo One */
             color: #ff4d00; 
-            font-size: 72px; 
-            font-weight: 800; 
+            font-size: 85px; /* Tamaño adaptado para Russo One */
+            font-weight: 400; /* Russo One no tiene bold */
             margin: 0; /* Para que quede pegado al logo */
-            text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); /* Sombra más sutil */
-            letter-spacing: 0.5px; /* Un poco de espaciado para Exo 2 */
-            
-            animation: pulse-shadow 4s ease-in-out infinite 1.2s;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); /* Sombra más sutil y profunda */
+            letter-spacing: 2px; /* Espaciado para Russo One */
         }
 
         #slogan {
-            font-size: 22px; 
+            font-size: 24px; /* Eslogan un poco más grande */
             color: #ccc;
-            margin-top: 5px; /* Más cerca del h1 */
+            margin-top: 10px; /* Más cerca del h1 */
             font-style: italic;
             font-weight: 400; 
             line-height: 1.4;
@@ -80,50 +83,72 @@
             width: 100%;
             opacity: 0;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
-            margin-top: 60px; /* Espacio para separar el header del botón */
+            margin-top: 80px; /* Espacio para separar el header del botón */
         }
 
         #download-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 45px;
-            background-color: #ff4d00;
+            padding: 22px 50px; /* Botón un poco más grande */
+            background: linear-gradient(to bottom, #ff5f00, #cc3e00); /* Gradiente para el botón */
             color: white;
             font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
+            font-size: 26px; /* Texto un poco más grande */
             font-weight: 700;
             text-decoration: none;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255, 77, 0, 0.4); /* Sombra inicial más grande */
+            box-shadow: 0 15px 40px rgba(255, 77, 0, 0.4); /* Sombra 3D inicial */
+            transition: all 0.3s ease;
+            position: relative; /* Para el pseudo-elemento 3D */
+        }
+
+        /* Pseudo-elemento para el efecto 3D */
+        #download-btn::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px; /* Profundidad de la parte inferior */
+            height: 5px; /* Altura de la parte inferior */
+            background-color: #993000; /* Color más oscuro para la "profundidad" */
+            border-radius: 0 0 12px 12px;
+            z-index: -1;
             transition: all 0.3s ease;
         }
 
         #download-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 77, 0, 0.7); /* Sombra más intensa al pasar el mouse */
+            transform: translateY(-8px); /* Se levanta más al pasar el mouse */
+            box-shadow: 0 25px 50px rgba(255, 77, 0, 0.6); /* Sombra más intensa al pasar el mouse */
         }
         
-        /* NUEVO: Efecto al hacer click */
+        #download-btn:hover::after {
+            transform: translateY(8px); /* La parte 3D inferior también se levanta un poco */
+        }
+
+        /* Efecto al hacer click */
         #download-btn:active {
-            transform: translateY(-2px) scale(0.98); /* Se hunde un poco y se achica */
+            transform: translateY(0px) scale(0.98); /* Se hunde un poco, vuelve al nivel 0 */
             box-shadow: 0 5px 15px rgba(255, 77, 0, 0.3); /* Sombra más chica */
             transition: all 0.1s ease; /* Transición rápida al hacer click */
         }
+        #download-btn:active::after {
+            transform: translateY(-2px); /* La parte 3D también se "mete" */
+        }
 
         #download-btn svg {
-            width: 30px;
-            height: 30px;
+            width: 35px; /* Icono más grande */
+            height: 35px;
             fill: white;
-            margin-right: 15px;
+            margin-right: 18px; /* Más espacio */
         }
 
 
         footer {
             width: 100%;
-            margin-top: 40px; /* Más espacio del botón al footer */
+            margin-top: 60px; /* Más espacio del botón al footer */
             opacity: 0;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
         }
@@ -148,7 +173,9 @@
 <body>
     
     <header>
-        <img src="logo.png" alt="iWorker Logo" id="logo">
+        <div id="logo-container">
+            <img src="logo.png" alt="iWorker Logo" id="logo">
+        </div>
         <h1>iWorker</h1>
         <p id="slogan">Desarrolla tu potencial al máximo.</p>
     </header>
