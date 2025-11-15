@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>iWorker - Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
+    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
     <style>
         /* --- DEFINICIÓN DE ANIMACIONES --- */
         
@@ -14,18 +13,18 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* NUEVA: Animación de latido para el logo */
+        /* CAMBIO: Animación de latido más suave */
         @keyframes heartbeat {
             0% { transform: scale(1); }
-            15% { transform: scale(1.08); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.08); }
-            60% { transform: scale(1); }
+            20% { transform: scale(1.03); } /* Menos aumento */
+            40% { transform: scale(1); }
+            60% { transform: scale(1.03); } /* Menos aumento */
+            80% { transform: scale(1); }
         }
 
         @keyframes pulse-shadow {
             0% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); }
-            50% { text-shadow: 0 0 40px rgba(255, 77, 0, 0.9); }
+            50% { text-shadow: 0 0 35px rgba(255, 77, 0, 0.9); } /* Menos brillo */
             100% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); }
         }
         /* --- FIN DE ANIMACIONES --- */
@@ -54,29 +53,27 @@
 
         header {
             width: 100%;
+            /* CAMBIO: Eliminado margin-top para acercar al logo */
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         #logo {
-            /* CAMBIO: Logo más grande */
             width: 360px; 
             height: auto;
-            margin-bottom: 15px; /* Más cerca del título */
+            margin-bottom: 5px; /* CAMBIO: Menos margen para acercar el texto */
             filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); 
             
-            /* NUEVO: Animación de latido. Empieza 1.2s después */
-            animation: heartbeat 2.5s ease-in-out infinite 1.2s;
+            animation: heartbeat 4s ease-in-out infinite 1.2s; /* CAMBIO: Duración para latido más suave */
         }
 
         h1 {
-            /* CAMBIO: Nueva fuente profesional */
             font-family: 'Exo 2', sans-serif;
             color: #ff4d00; /* Naranja iWorker */
-            font-size: 72px; /* Un poco más grande */
+            font-size: 72px; 
             font-weight: 800; 
-            margin: 0;
+            margin: 0; /* CAMBIO: Eliminar margen superior para acercar al logo */
             text-shadow: 0 0 25px rgba(255, 77, 0, 0.6); 
-            letter-spacing: -1px; /* Ajustado para Exo 2 */
+            letter-spacing: -1px; 
             
             animation: pulse-shadow 4s ease-in-out infinite 1.2s;
         }
@@ -84,7 +81,7 @@
         #slogan {
             font-size: 22px; 
             color: #ccc;
-            margin-top: 10px; /* Más cerca del h1 */
+            margin-top: 5px; /* CAMBIO: Menos margen para acercar al h1 */
             font-style: italic;
             font-weight: 400; 
             line-height: 1.4;
@@ -94,9 +91,12 @@
         /* NUEVO: Contenedor principal para el botón */
         main {
             width: 100%;
-            /* Inicia invisible para la animación */
             opacity: 0;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+            flex-grow: 1; /* Para que ocupe el espacio central disponible */
+            display: flex;
+            align-items: center; /* Centrar el botón verticalmente en el espacio restante */
+            justify-content: center;
         }
 
         /* NUEVO: Estilo del botón de descarga */
@@ -114,16 +114,24 @@
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 77, 0, 0.4);
-            transition: all 0.3s ease;
+            
+            /* CAMBIO: Sombra más pronunciada y transición suave */
+            box-shadow: 0 10px 30px rgba(255, 77, 0, 0.4), 0 0 0 rgba(255, 77, 0, 0); /* Dos sombras */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más moderna */
         }
 
         #download-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(255, 77, 0, 0.6);
+            transform: translateY(-8px); /* Más levantado */
+            /* CAMBIO: Sombra al hover más grande y con más brillo */
+            box-shadow: 0 18px 45px rgba(255, 77, 0, 0.7), 0 0 0 rgba(255, 77, 0, 0.2);
         }
 
-        /* NUEVO: Estilo para el SVG de Android dentro del botón */
+        #download-btn:active {
+            transform: translateY(-2px); /* CAMBIO: Se "hunde" al hacer click */
+            /* CAMBIO: Sombra al click más cercana y menos intensa */
+            box-shadow: 0 5px 15px rgba(255, 77, 0, 0.3);
+        }
+
         #download-btn svg {
             width: 30px;
             height: 30px;
@@ -131,11 +139,9 @@
             margin-right: 15px;
         }
 
-
         footer {
             width: 100%;
             margin-top: 20px; /* Espacio por si acaso */
-            /* Inicia invisible para la animación */
             opacity: 0;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
         }
@@ -165,11 +171,9 @@
         <p id="slogan">Desarrolla tu potencial al máximo.</p>
     </header>
 
-    <!-- NUEVA SECCIÓN: Botón de Descarga -->
     <main>
         <a id="download-btn" href="#">
-            <!-- Icono SVG de Android -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <!-- Icono SVG de Android --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M19.1,6.2C18.4,5.5,17.6,5,16.8,4.7C15.9,4.2,14.9,4,14,4h-4C9.1,4,8.1,4.2,7.2,4.7C6.4,5,5.6,5.5,4.9,6.2 C4.2,6.9,3.7,7.7,3.3,8.6C3,9.4,2.9,10.3,2.9,11.2c0,1.2,0.3,2.4,0.8,3.6c0.5,1.1,1.2,2.1,2.1,3c1,0.9,2,1.6,3.1,2.1 c1.1,0.5,2.2,0.7,3.2,0.7s2.1-0.2,3.2-0.7c1.1-0.5,2.1-1.2,3.1-2.1c0.9-0.9,1.6-1.9,2.1-3c0.5-1.1,0.8-2.3,0.8-3.6 c0-0.9-0.1-1.8-0.5-2.6C20.3,7.7,19.8,6.9,19.1,6.2z M6,12.5c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1C7,12.1,6.6,12.5,6,12.5z M8.5,8c0-0.6,0.4-1,1-1s1,0.4,1,1c0,0.6-0.4,1-1,1S8.5,8.6,8.5,8z M15.5,8c0-0.6,0.4-1,1-1s1,0.4,1,1c0,0.6-0.4,1-1,1S15.5,8.6,15.5,8z M18,12.5c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1C19,12.1,18.6,12.5,18,12.5z M17,16.5h-2.5c0,0.6-0.4,1-1,1h-3c-0.6,0-1-0.4-1-1H7c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1h10c0.6,0,1,0.4,1,1v2C18,16.1,17.6,16.5,17,16.5z"/>
             </svg>
             <span>DESCARGA</span>
