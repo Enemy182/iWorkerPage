@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>iWorker - Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
+    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
     <style>
         /* --- DEFINICIÓN DE ANIMACIONES --- */
         
@@ -13,13 +14,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse-shadow {
-            0% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); } /* Sombra más sutil */
-            50% { text-shadow: 0 0 25px rgba(255, 77, 0, 0.7); }
-            100% { text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); }
-        }
         /* --- FIN DE ANIMACIONES --- */
-
 
         body {
             font-family: 'Montserrat', sans-serif; 
@@ -30,7 +25,7 @@
             min-height: 100vh;
             color: #ffffff;
             margin: 0;
-            padding: 40px 20px; 
+            padding: 20px 20px; /* Reducido el padding superior para subir el logo */
             box-sizing: border-box; 
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%), url('bg.jpg');
             background-size: cover; 
@@ -43,26 +38,43 @@
         header {
             width: 100%;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            margin-top: 5vh; /* Se mantiene para que el header no esté pegado arriba del todo */
+            margin-top: 2vh; /* Reducido para subir el logo más arriba */
         }
 
         #logo {
-            width: 360px; 
+            width: 432px; /* Aumentado en un 20% (de 360px a 432px) */
             height: auto;
             margin-bottom: -15px; /* Superpone un poco el logo sobre el texto */
             filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); 
+            /* Efecto 3D para el logo */
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        #logo:hover {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02);
         }
 
         h1 {
             font-family: 'Exo 2', sans-serif;
             color: #ff4d00; 
-            font-size: 76px; /* CAMBIO: Un poco más grande */
-            font-weight: 800; /* CAMBIO: Se mantiene en 800 (Extra Bold) */
+            font-size: 76px;
+            font-weight: 800;
             margin: 0; /* Para que quede pegado al logo */
-            text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); /* Sombra más sutil */
-            letter-spacing: 0.5px; /* Un poco de espaciado para Exo 2 */
-            
-            animation: pulse-shadow 4s ease-in-out infinite 1.2s;
+            /* Quitado el brillo naranja: eliminado text-shadow y animación pulse-shadow */
+            letter-spacing: 0.5px;
+            /* Efecto 3D para el texto */
+            text-shadow: 
+                1px 1px 0 rgba(0, 0, 0, 0.2),
+                2px 2px 0 rgba(0, 0, 0, 0.15),
+                3px 3px 0 rgba(0, 0, 0, 0.1),
+                4px 4px 0 rgba(0, 0, 0, 0.05);
+            transform: perspective(500px) rotateX(10deg);
+            transition: transform 0.3s ease;
+        }
+
+        h1:hover {
+            transform: perspective(500px) rotateX(5deg) scale(1.02);
         }
 
         #slogan {
@@ -96,20 +108,17 @@
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            /* CAMBIO: Sombra negra estándar, sin neón */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
             transition: all 0.3s ease;
         }
 
         #download-btn:hover {
             transform: translateY(-5px);
-            /* CAMBIO: Sombra negra más intensa al pasar el mouse */
             box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4); 
         }
         
         #download-btn:active {
             transform: translateY(-2px) scale(0.98); 
-            /* CAMBIO: Sombra negra más chica al hacer click */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
             transition: all 0.1s ease; 
         }
@@ -120,7 +129,6 @@
             fill: white;
             margin-right: 15px;
         }
-
 
         footer {
             width: 100%;
