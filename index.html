@@ -188,11 +188,11 @@
             transition: all 0.1s ease; 
         }
 
-        #download-btn svg {
+        /* ++ CAMBIO: Apuntamos a 'img' en lugar de 'svg' y cambiamos el margen ++ */
+        #download-btn img {
             width: 30px;
             height: 30px;
-            fill: white;
-            margin-right: 15px;
+            margin-left: 15px; /* Movido de margin-right a margin-left */
         }
 
 
@@ -266,10 +266,11 @@
                 font-size: 20px; /* Texto de botón más chico */
             }
 
-            #download-btn svg {
+            /* ++ CAMBIO: Apuntamos a 'img' en lugar de 'svg' y cambiamos el margen ++ */
+            #download-btn img {
                 width: 24px; /* Icono más chico */
                 height: 24px;
-                margin-right: 12px;
+                margin-left: 12px; /* Movido de margin-right a margin-left */
             }
 
             footer {
@@ -319,11 +320,10 @@
     </header>
 
     <main>
+        <!-- ++ CAMBIO: Invertido el orden y reemplazado SVG por <img> ++ -->
         <a id="download-btn" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M19.1,6.2C18.4,5.5,17.6,5,16.8,4.7C15.9,4.2,14.9,4,14,4h-4C9.1,4,8.1,4.2,7.2,4.7C6.4,5,5.6,5.5,4.9,6.2 C4.2,6.9,3.7,7.7,3.3,8.6C3,9.4,2.9,10.3,2.9,11.2c0,1.2,0.3,2.4,0.8,3.6c0.5,1.1,1.2,2.1,2.1,3c1,0.9,2,1.6,3.1,2.1 c1.1,0.5,2.2,0.7,3.2,0.7s2.1-0.2,3.2-0.7c1.1-0.5,2.1-1.2,3.1-2.1c0.9-0.9,1.6-1.9,2.1-3c0.5-1.1,0.8-2.3,0.8-3.6 c0-0.9-0.1-1.8-0.5-2.6C20.3,7.7,19.8,6.9,19.1,6.2z M6,12.5c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1C7,12.1,6.6,12.5,6,12.5z M8.5,8c0-0.6,0.4-1,1-1s1,0.4,1,1c0,0.6-0.4,1-1,1S8.5,8.6,8.5,8z M15.5,8c0-0.6,0.4-1,1-1s1,0.4,1,1c0,0.6-0.4,1-1,1S15.5,8.6,15.5,8z M18,12.5c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1C19,12.1,18.6,12.5,18,12.5z M17,16.5h-2.5c0,0.6-0.4,1-1,1h-3c-0.6,0-1-0.4-1-1H7c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1h10c0.6,0,1,0.4,1,1v2C18,16.1,17.6,16.5,17,16.5z"/>
-            </svg>
             <span>DESCARGA</span>
+            <img src="android_icon.png" alt="Descargar para Android">
         </a>
     </main>
 
