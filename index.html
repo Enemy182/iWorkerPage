@@ -136,26 +136,21 @@
             margin-top: 5vh; 
         }
 
-        #logo {
-            width: 360px; 
-            height: auto;
-            margin-bottom: -15px; 
-            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6));
-        }
+        /* -- ELIMINADO: Estilo de #logo -- */
+        /* -- ELIMINADO: Estilo de #iworker-title -- */
 
-        /* -- CAMBIO: Reemplazado h1 por #iworker-title -- */
-        #iworker-title {
-            height: 76px; /* Mantiene la altura del texto original */
-            width: auto; /* Mantiene la proporción de la imagen */
-            margin: 0; /* Mantiene el layout compacto */
-            /* Aplicamos un filtro de sombra similar al text-shadow */
-            filter: drop-shadow(0 0 15px rgba(255, 77, 0, 0.4));
+        /* ++ AÑADIDO: Estilo para la nueva imagen combinada ++ */
+        #header-logo-title {
+            width: 360px; /* Mismo tamaño que el logo anterior */
+            height: auto; /* Mantiene la proporción */
+            margin-bottom: 5px; /* Espacio antes del eslogan */
+            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); /* La sombra que tenía el logo */
         }
 
         #slogan {
             font-size: 22px; 
             color: #ccc;
-            margin-top: 5px; 
+            margin-top: 0px; /* Pegado a la nueva imagen */
             font-style: italic;
             font-weight: 400; 
             line-height: 1.4;
@@ -253,15 +248,15 @@
                 margin-top: 2vh; /* Menos margen superior en celular */
             }
 
-            #logo {
-                width: 280px; /* Logo más chico para celular */
-                margin-bottom: -10px;
+            /* -- ELIMINADO: Estilo responsivo de #logo -- */
+
+            /* ++ AÑADIDO: Estilo responsivo para la nueva imagen ++ */
+            #header-logo-title {
+                width: 280px; /* Mismo tamaño responsivo que el logo anterior */
+                margin-bottom: 0px;
             }
 
-            h1 {
-                font-size: 56px; /* Título más chico */
-                letter-spacing: 0; /* Espaciado normal */
-            }
+            /* -- ELIMINADO: h1 (ya no existe) -- */
 
             #slogan {
                 font-size: 18px; /* Eslogan más chico */
@@ -324,9 +319,8 @@
     
 
     <header>
-        <img src="logo.png" alt="iWorker Logo" id="logo">
-        <!-- ++ CAMBIO: Reemplazado h1 por img ++ -->
-        <img src="iworker_title.png" alt="iWorker" id="iworker-title">
+        <!-- ++ CAMBIO: Reemplazadas las dos <img> por una sola ++ -->
+        <img src="iworker_logo+title.png" alt="iWorker Logo" id="header-logo-title">
         <p id="slogan">Desarrolla tu potencial al máximo.</p>
     </header>
 
