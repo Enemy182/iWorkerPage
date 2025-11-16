@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>iWorker - Bienvenido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
+    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
     <style>
         /* --- DEFINICIÓN DE ANIMACIONES --- */
         
@@ -14,7 +13,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* (Animación pulse-shadow eliminada a pedido del usuario)
+        */
+        
         /* --- FIN DE ANIMACIONES --- */
+
 
         body {
             font-family: 'Montserrat', sans-serif; 
@@ -25,7 +28,7 @@
             min-height: 100vh;
             color: #ffffff;
             margin: 0;
-            padding: 20px 20px; /* Reducido el padding superior para subir el logo */
+            padding: 40px 20px; 
             box-sizing: border-box; 
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%), url('bg.jpg');
             background-size: cover; 
@@ -38,49 +41,32 @@
         header {
             width: 100%;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            margin-top: 2vh; /* Reducido para subir el logo más arriba */
+            margin-top: 5vh; 
         }
 
         #logo {
-            width: 432px; /* Aumentado en un 20% (de 360px a 432px) */
+            width: 360px; 
             height: auto;
-            margin-bottom: -15px; /* Superpone un poco el logo sobre el texto */
-            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); 
-            /* Efecto 3D para el logo */
-            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        #logo:hover {
-            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02);
+            margin-bottom: -15px; 
+            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6));
+            /* Animación de latido eliminada */
         }
 
         h1 {
             font-family: 'Exo 2', sans-serif;
             color: #ff4d00; 
-            font-size: 76px;
-            font-weight: 800;
-            margin: 0; /* Para que quede pegado al logo */
-            /* Quitado el brillo naranja: eliminado text-shadow y animación pulse-shadow */
-            letter-spacing: 0.5px;
-            /* Efecto 3D para el texto */
-            text-shadow: 
-                1px 1px 0 rgba(0, 0, 0, 0.2),
-                2px 2px 0 rgba(0, 0, 0, 0.15),
-                3px 3px 0 rgba(0, 0, 0, 0.1),
-                4px 4px 0 rgba(0, 0, 0, 0.05);
-            transform: perspective(500px) rotateX(10deg);
-            transition: transform 0.3s ease;
-        }
-
-        h1:hover {
-            transform: perspective(500px) rotateX(5deg) scale(1.02);
+            font-size: 76px; 
+            font-weight: 800; 
+            margin: 0; 
+            text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); 
+            letter-spacing: 0.5px; 
+            /* Animación de pulso eliminada */
         }
 
         #slogan {
             font-size: 22px; 
             color: #ccc;
-            margin-top: 5px; /* Más cerca del h1 */
+            margin-top: 5px; 
             font-style: italic;
             font-weight: 400; 
             line-height: 1.4;
@@ -91,7 +77,7 @@
             width: 100%;
             opacity: 0;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
-            margin-top: 60px; /* Espacio para separar el header del botón */
+            margin-top: 60px; 
         }
 
         #download-btn {
@@ -130,9 +116,10 @@
             margin-right: 15px;
         }
 
+
         footer {
             width: 100%;
-            margin-top: 40px; /* Más espacio del botón al footer */
+            margin-top: 40px; 
             opacity: 0;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
         }
@@ -152,6 +139,54 @@
             font-style: italic;
             font-weight: 300;
         }
+
+        /* --- INICIO DE CORRECCIÓN RESPONSIVA --- */
+        /* Para pantallas más chicas de 600px (celulares) */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 20px; /* Menos padding vertical */
+                justify-content: space-around; /* Ajusta el espacio para celulares */
+            }
+
+            header {
+                margin-top: 2vh; /* Menos margen superior en celular */
+            }
+
+            #logo {
+                width: 280px; /* Logo más chico para celular */
+                margin-bottom: -10px;
+            }
+
+            h1 {
+                font-size: 56px; /* Título más chico */
+                letter-spacing: 0; /* Espaciado normal */
+            }
+
+            #slogan {
+                font-size: 18px; /* Eslogan más chico */
+            }
+
+            main {
+                margin-top: 40px; /* Menos espacio */
+            }
+
+            #download-btn {
+                padding: 18px 35px; /* Botón más chico */
+                font-size: 20px; /* Texto de botón más chico */
+            }
+
+            #download-btn svg {
+                width: 24px; /* Icono más chico */
+                height: 24px;
+                margin-right: 12px;
+            }
+
+            footer {
+                margin-top: 30px;
+            }
+        }
+        /* --- FIN DE CORRECCIÓN RESPONSIVA --- */
+
     </style>
 </head>
 <body>
@@ -173,7 +208,7 @@
 
     <footer>
         <p id="trademark">iWorker® 2025 - Todos los derechos reservados.</p>
-        <p id="signature">By Enemy</p>
+        <p id="signature">Diseñado por Enemy</p>
     </footer>
 
 </body>
