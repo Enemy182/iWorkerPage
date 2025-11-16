@@ -12,9 +12,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* (Animación pulse-shadow eliminada a pedido del usuario)
-        */
         
         /* --- FIN DE ANIMACIONES --- */
 
@@ -38,6 +35,86 @@
             text-align: center;
         }
 
+        /* --- INICIO DE ESTILOS DE NAVEGACIÓN --- */
+        #desktop-nav {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 10;
+        }
+        #desktop-nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0 8px;
+            transition: color 0.3s ease;
+        }
+        #desktop-nav a:hover {
+            color: #ff4d00;
+        }
+
+        #hamburger-icon {
+            display: none; /* Oculto en desktop */
+            position: absolute;
+            top: 40px;
+            right: 30px;
+            z-index: 10;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+        }
+        #hamburger-icon span {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Empieza fuera de la pantalla */
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: #1a1a1a;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            z-index: 100;
+            transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        #mobile-menu.active {
+            left: 0; /* Lo trae a la pantalla */
+        }
+        #mobile-menu #close-btn {
+            font-size: 40px;
+            color: #aaa;
+            text-decoration: none;
+            align-self: flex-end;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        #mobile-menu a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 15px 10px;
+            border-bottom: 1px solid #333;
+        }
+        #mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        /* --- FIN DE ESTILOS DE NAVEGACIÓN --- */
+
+
         header {
             width: 100%;
             animation: fade-in 1.2s cubic-bezier(0.25, 1, 0.5, 1);
@@ -49,7 +126,6 @@
             height: auto;
             margin-bottom: -15px; 
             filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6));
-            /* Animación de latido eliminada */
         }
 
         h1 {
@@ -60,7 +136,6 @@
             margin: 0; 
             text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); 
             letter-spacing: 0.5px; 
-            /* Animación de pulso eliminada */
         }
 
         #slogan {
@@ -147,6 +222,18 @@
                 padding: 30px 20px; /* Menos padding vertical */
                 justify-content: space-around; /* Ajusta el espacio para celulares */
             }
+            
+            /* --- Mostramos/Ocultamos menús --- */
+            #desktop-nav {
+                display: none;
+            }
+            #hamburger-icon {
+                display: flex; /* Lo mostramos en mobile */
+                top: 30px;
+                right: 20px;
+            }
+            /* ------------------------------- */
+
 
             header {
                 margin-top: 2vh; /* Menos margen superior en celular */
@@ -190,7 +277,37 @@
     </style>
 </head>
 <body>
+
+    <!-- ++ INICIO DE HTML DE NAVEGACIÓN ++ -->
+    <nav id="desktop-nav">
+        <a href="#">Soporte</a> |
+        <a href="#">Quiénes somos</a> |
+        <a href="#">Nuestra misión</a> |
+        <a href="#">Donaciones</a> |
+        <a href="#">Sponsor</a> |
+        <a href="#">Contacto</a> |
+        <a href="#">FAQs</a>
+    </nav>
+
+    <div id="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="mobile-menu">
+        <a href="javascript:void(0)" id="close-btn">&times;</a>
+        <a href="#">Soporte</a>
+        <a href="#">Quiénes somos</a>
+        <a href="#">Nuestra misión</a>
+        <a href="#">Donaciones</a>
+        <a href="#">Sponsor</a>
+        <a href="#">Contacto</a>
+        <a href="#">FAQs</a>
+    </div>
+    <!-- ++ FIN DE HTML DE NAVEGACIÓN ++ -->
     
+
     <header>
         <img src="logo.png" alt="iWorker Logo" id="logo">
         <h1>iWorker</h1>
@@ -208,8 +325,27 @@
 
     <footer>
         <p id="trademark">iWorker® 2025 - Todos los derechos reservados.</p>
-        <p id="signature">By Enemy</p>
+        <p id="signature">Diseñado por Enemy</p>
     </footer>
+
+    <!-- ++ INICIO DE JAVASCRIPT DEL MENÚ ++ -->
+    <script>
+        // Obtenemos los elementos del DOM
+        const hamburger = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-btn');
+
+        // Cuando se hace clic en la hamburguesa, muestra el menú
+        hamburger.onclick = function() {
+            mobileMenu.classList.add('active');
+        }
+
+        // Cuando se hace clic en la 'X', oculta el menú
+        closeBtn.onclick = function() {
+            mobileMenu.classList.remove('active');
+        }
+    </script>
+    <!-- ++ FIN DE JAVASCRIPT DEL MENÚ ++ -->
 
 </body>
 </html>
