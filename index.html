@@ -26,6 +26,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* -- ELIMINADO: Ya no se usa la animación pulse-shadow -- */
+        
         /* --- FIN DE ANIMACIONES --- */
 
 
@@ -141,14 +143,13 @@
             filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6));
         }
 
-        h1 {
-            font-family: 'Exo 2', sans-serif;
-            color: #ff4d00; 
-            font-size: 76px; 
-            font-weight: 800; 
-            margin: 0; 
-            text-shadow: 0 0 15px rgba(255, 77, 0, 0.4); 
-            letter-spacing: 0.5px; 
+        /* -- CAMBIO: Reemplazado h1 por #iworker-title -- */
+        #iworker-title {
+            height: 76px; /* Mantiene la altura del texto original */
+            width: auto; /* Mantiene la proporción de la imagen */
+            margin: 0; /* Mantiene el layout compacto */
+            /* Aplicamos un filtro de sombra similar al text-shadow */
+            filter: drop-shadow(0 0 15px rgba(255, 77, 0, 0.4));
         }
 
         #slogan {
@@ -324,7 +325,8 @@
 
     <header>
         <img src="logo.png" alt="iWorker Logo" id="logo">
-        <h1>iWorker</h1>
+        <!-- ++ CAMBIO: Reemplazado h1 por img ++ -->
+        <img src="iworker_title.png" alt="iWorker" id="iworker-title">
         <p id="slogan">Desarrolla tu potencial al máximo.</p>
     </header>
 
