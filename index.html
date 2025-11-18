@@ -7,15 +7,12 @@
     
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- ETIQUETAS OPEN GRAPH (PARA WHATSAPP, ETC) -->
-    <!-- !! REEMPLAZÁ CON TU URL REAL DE GITHUB PAGES !! -->
     <meta property="og:title" content="iWorker - Desarrolla tu potencial">
-    <meta property="og:description" content="La plataforma para conectar clientes y trabajadores.">
+    <meta property="og:description" content="La plataforma para conectar usuarios y trabajadores.">
     <meta property="og:image" content="https://TU_USUARIO.github.io/TU_REPOSITORIO/iworker_logotitle.png">
     <meta property="og:url" content="https://TU_USUARIO.github.io/TU_REPOSITORIO/index.html">
     <meta property="og:type" content="website">
     
-    <!-- Importamos Montserrat (para el texto) y Exo 2 (para el título) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
     <style>
         @keyframes fade-in {
@@ -211,6 +208,95 @@
             font-weight: 300;
         }
 
+        /* --- ESTILOS DEL MODAL --- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 200; /* Asegura que esté por encima de todo */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro transparente */
+            backdrop-filter: blur(5px); /* Efecto moderno de desenfoque */
+            animation: fade-in 0.3s ease-out;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background-color: #1c1c1c; /* Contenedor de contenido oscuro */
+            margin: 10% auto; /* 10% arriba y centrado */
+            padding: 40px;
+            border: 1px solid #333;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            animation: fade-in 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            text-align: left;
+        }
+        
+        #modal-title {
+            color: #ff4d00;
+            font-size: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        #modal-body p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        #modal-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #modal-body ul li {
+             margin-bottom: 10px;
+             padding-left: 20px;
+             position: relative;
+        }
+
+        #modal-body ul li::before {
+             content: '•';
+             color: #ff4d00;
+             font-weight: bold;
+             display: inline-block;
+             width: 1em;
+             margin-left: -1em;
+        }
+
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 40px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #ff4d00;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* --- FIN DE ESTILOS DEL MODAL --- */
+
         /* --- INICIO DE CORRECCIÓN RESPONSIVA --- */
         @media (max-width: 600px) {
             body {
@@ -258,6 +344,23 @@
             footer {
                 margin-top: 30px;
             }
+            
+            /* Ajustes responsivos para el modal */
+            .modal-content {
+                margin: 20% auto;
+                padding: 25px;
+                width: 95%;
+            }
+
+            #modal-title {
+                font-size: 24px;
+            }
+            
+            .close-modal {
+                top: 5px;
+                right: 15px;
+                font-size: 30px;
+            }
         }
         /* --- FIN DE CORRECCIÓN RESPONSIVA --- */
 
@@ -301,6 +404,15 @@
             <img src="android_icon.png" alt="Descargar para Android">
         </a>
     </main>
+    
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
 
     <footer>
         <p id="trademark">iWorker® 2025 - Todos los derechos reservados.</p>
@@ -312,13 +424,99 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const closeBtn = document.getElementById('close-btn');
 
+        const infoModal = document.getElementById('info-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeModalBtn = document.querySelector('.close-modal');
+
+        // --- Funciones de Menú Móvil ---
         hamburger.onclick = function() {
             mobileMenu.classList.add('active');
         }
 
-        closeBtn.onclick = function() {
-            mobileMenu.classList.remove('active');
+        closeBtn.onclick = function(e) {
+             e.preventDefault(); // Evita que se navegue al href="#"
+             mobileMenu.classList.remove('active');
         }
+
+        // --- Contenido Genérico (Texto de Relleno) ---
+        const genericContent = {
+            "Quiénes somos": {
+                title: "🤝 Quiénes Somos",
+                text: "<p>iWorker es una iniciativa nacida de la necesidad de **modernizar la conexión entre el talento independiente y las oportunidades laborales**. Somos un equipo apasionado por la tecnología y la inclusión laboral, dedicados a construir una plataforma transparente y eficiente.</p><p>Creemos en el potencial de cada persona y trabajamos para eliminar las barreras geográficas y de comunicación que impiden que los clientes encuentren al trabajador ideal y viceversa. Nuestra visión es simple: un mundo donde el trabajo y el talento se encuentran fácilmente.</p>"
+            },
+            "Nuestra misión": {
+                title: "🚀 Nuestra Misión",
+                text: "<p>Nuestra misión principal es **empoderar a la fuerza laboral independiente** y simplificar la vida de los clientes. Buscamos:</p><ul><li>**Conectar:** Ser el puente más rápido y seguro entre clientes y profesionales.</li><li>**Asegurar:** Garantizar transacciones justas y seguras para ambas partes.</li><li>**Innovar:** Mantenernos a la vanguardia tecnológica para ofrecer la mejor experiencia de usuario.</li><li>**Desarrollar:** Proveer herramientas para que los trabajadores puedan expandir sus habilidades y su alcance.</li></ul><p>Trabajamos cada día para que iWorker no sea solo una aplicación, sino una comunidad de crecimiento y confianza.</p>"
+            },
+            "Donaciones": {
+                title: "❤️ Donaciones",
+                text: "<p>En iWorker, buscamos ir más allá del negocio. Las donaciones que recibimos son utilizadas directamente para **financiar programas de capacitación y becas** dirigidos a trabajadores de bajos recursos que buscan digitalizar sus servicios.</p><p>Tu apoyo nos ayuda a:</p><ul><li>Ofrecer acceso a cursos de desarrollo de habilidades.</li><li>Subsidiar el acceso a herramientas digitales esenciales.</li><li>Expandir nuestra plataforma a regiones con menos oportunidades laborales.</li></ul><p>¡Cada pequeño aporte hace una gran diferencia en la vida de un profesional!</p>"
+            },
+            "Sponsor": {
+                title: "✨ Conviértete en Sponsor",
+                text: "<p>¿Tu empresa comparte nuestra visión de un mercado laboral más justo y eficiente? Únete a iWorker como **Sponsor**.</p><p>Ofrecemos oportunidades de patrocinio que te permitirán:</p><ul><li>**Visibilidad:** Tu marca en el centro de nuestra creciente comunidad de millones de usuarios.</li><li>**Impacto Social:** Asociarte a una causa que promueve la inclusión y el desarrollo laboral.</li><li>**Exclusividad:** Acceso preferencial a nuestros eventos y lanzamientos.</li></ul><p>Contacta a nuestro equipo de alianzas para explorar un plan de patrocinio que se ajuste a tus objetivos empresariales.</p>"
+            },
+            "Contacto": {
+                title: "✉️ Contáctanos",
+                text: "<p>Estamos aquí para ayudarte. Ya sea que tengas una pregunta, una sugerencia o necesites soporte técnico, no dudes en contactarnos.</p><ul><li>**Soporte Técnico:** soporte@iworker.com</li><li>**Alianzas/Sponsor:** alianzas@iworker.com</li><li>**Consultas Generales:** info@iworker.com</li></ul><p>También puedes seguirnos en nuestras redes sociales (Iconos de Redes Sociales: [Imagen de Iconos de Redes Sociales]) para estar al día con nuestras últimas noticias.</p>"
+            },
+            "Preguntas Frecuentes": {
+                title: "❓ Preguntas Frecuentes (FAQ)",
+                text: "<p>Aquí respondemos a las dudas más comunes sobre el uso de iWorker.</p><ul><li>**¿Es iWorker gratuito?** La descarga y el registro son gratuitos. Se aplica una pequeña comisión solo al concretar un servicio, asegurando la plataforma y las transacciones.</li><li>**¿Cómo verifican a los trabajadores?** Implementamos un riguroso sistema de verificación de identidad y referencias previas.</li><li>**¿Puedo usar la aplicación sin registrarme?** No, se requiere un registro básico para garantizar la seguridad y trazabilidad de los servicios.</li></ul><p>Si tu pregunta no está aquí, ¡contáctanos!</p>"
+            }
+        };
+
+        // --- Lógica del Modal ---
+        
+        // Función para abrir el modal con el contenido correcto
+        function openModal(linkText) {
+            const content = genericContent[linkText];
+            if (content) {
+                modalTitle.innerHTML = content.title;
+                modalBody.innerHTML = content.text;
+                infoModal.style.display = "block";
+                
+                // Cierra el menú móvil si estaba abierto
+                mobileMenu.classList.remove('active'); 
+            }
+        }
+        
+        // Función para cerrar el modal
+        function closeModal() {
+            infoModal.style.display = "none";
+        }
+        
+        // Detectar clics en todos los enlaces de navegación
+        const navLinks = document.querySelectorAll('#desktop-nav a, #mobile-menu a');
+        navLinks.forEach(link => {
+            // Solo agrega el manejador de clic a los enlaces que NO son el botón de cierre del móvil
+            if (link.id !== 'close-btn' && link.id !== 'download-btn') { 
+                // Aseguramos que el href no haga nada
+                link.href = "javascript:void(0)"; 
+                link.onclick = function() {
+                    // Usamos innerText para identificar qué enlace se clickeó
+                    openModal(link.innerText.trim()); 
+                };
+            }
+        });
+
+        // Eventos para cerrar el modal:
+        closeModalBtn.onclick = closeModal; // Clic en el botón X
+
+        // Clic fuera del modal para cerrarlo
+        window.onclick = function(event) {
+            if (event.target == infoModal) {
+                closeModal();
+            }
+        }
+        
+        // Tecla ESC para cerrarlo
+        document.onkeydown = function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        };
     </script>
 
 </body>
