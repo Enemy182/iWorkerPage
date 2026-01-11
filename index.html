@@ -129,29 +129,19 @@
             }
         };
 
-        function openModal(linkText) {
-            const content = genericContent[linkText];
-            if (content) {
-                modalTitle.innerHTML = content.title;
-                modalBody.innerHTML = content.text;
-                infoModal.style.display = "block";
-                mobileMenu.classList.remove('active');
-            }
-        }
+        function openModal(key) {
+    const content = genericContent[key];
+    if (!content) return;
 
-        document.querySelectorAll('#desktop-nav a, #mobile-menu a, #legal-nav a').forEach(link => {
-            if (link.id !== 'close-btn') {
-                link.onclick = (e) => {
-                    e.preventDefault();
-                    openModal(link.innerText.trim());
-                };
-            }
-        });
+    modalTitle.innerHTML = content.title;
+    modalBody.innerHTML = content.text;
+    infoModal.style.display = "block";
+    mobileMenu.classList.remove('active');
+}
 
-        document.getElementById('hamburger-icon').onclick = () => mobileMenu.classList.add('active');
-        document.getElementById('close-btn').onclick = () => mobileMenu.classList.remove('active');
-        closeModalBtn.onclick = () => infoModal.style.display = "none";
-    </script>
-
-</body>
-</html>
+document.querySelectorAll('[data-key]').forEach(link => {
+    link.onclick = (e) => {
+        e.preventDefault();
+        openModal(link.dataset.key);
+    };
+});
