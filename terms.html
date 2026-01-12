@@ -18,12 +18,15 @@
         h1 { border-bottom: 2px solid #ff4d00; padding-bottom: 10px; text-align: center; }
         h3 { border-left: 4px solid #ff4d00; padding-left: 15px; margin-top: 40px; }
         p { color: #ccc; margin-bottom: 15px; }
+        ul { color: #ccc; margin-bottom: 15px; padding-left: 20px; }
+        li { margin-bottom: 8px; }
         .back-btn { display: inline-block; color: #ff4d00; text-decoration: none; font-weight: bold; margin-bottom: 30px; border: 1px solid #ff4d00; padding: 10px 20px; border-radius: 5px; transition: 0.3s; }
         .back-btn:hover { background: #ff4d00; color: white; }
-        nav.local-nav { margin-bottom: 40px; text-align: center; background: #111; padding: 15px; border-radius: 8px; }
-        nav.local-nav a { color: #aaa; text-decoration: none; margin: 0 15px; font-size: 14px; text-transform: uppercase; }
+        nav.local-nav { margin-bottom: 40px; text-align: center; background: #111; padding: 15px; border-radius: 8px; position: sticky; top: 10px; z-index: 10; border: 1px solid #333; }
+        nav.local-nav a { color: #aaa; text-decoration: none; margin: 0 15px; font-size: 13px; text-transform: uppercase; font-weight: bold; }
         nav.local-nav a:hover { color: #ff4d00; }
         hr { border: 0; border-top: 1px solid #333; margin: 40px 0; }
+        .highlight { color: #fff; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -53,64 +56,61 @@
 
             <h3>2. DEFINICIÓN Y ALCANCE DEL SERVICIO</h3>
             <p><strong>2.1 Naturaleza de iWorker</strong></p>
-            <p>iWorker es una plataforma tecnológica de intermediación digital, cuyo objeto exclusivo es facilitar la visibilidad, clasificación, publicación de anuncios y el contacto entre:<br><br>
-            Usuarios (personas que buscan servicios o productos)<br>
-            Workers (trabajadores independientes)<br>
-            Emprendedores (ofrecen productos mediante vitrina informativa)</p>
-            <p>iWorker NO:<br>
-            Presta servicios<br>
-            Ejecuta trabajos<br>
-            Vende productos<br>
-            Intermedia pagos<br>
-            Supervisa actividades<br>
-            Garantiza resultados<br>
-            Certifica identidades o capacidades</p>
+            <p>iWorker es una plataforma tecnológica de intermediación digital, cuyo objeto exclusivo es facilitar la visibilidad, clasificación, publicación de anuncios y el contacto entre:</p>
+            <ul>
+                <li>Usuarios (personas que buscan servicios o productos)</li>
+                <li>Workers (trabajadores independientes)</li>
+                <li>Emprendedores (ofrecen productos mediante vitrina informativa)</li>
+            </ul>
+            <p>iWorker NO: Presta servicios, Ejecuta trabajos, Vende productos, Intermedia pagos, Supervisa actividades, Garantiza resultados, Certifica identidades, capacidades, títulos o experiencia.</p>
             <p>La Plataforma actúa únicamente como un puente tecnológico, sin intervención en las relaciones que se generen entre las partes.</p>
 
             <p><strong>2.2 Servicio “AS IS” – Exclusión de Garantías</strong></p>
             <p>La aplicación se ofrece “tal cual” (AS IS) y “según disponibilidad”. En la máxima medida permitida por la legislación argentina, iWorker excluye toda garantía, expresa o implícita, incluyendo —sin limitación— garantías de: Funcionamiento continuo, Ausencia de errores, Idoneidad para un fin determinado, Calidad o resultado esperado.</p>
-            <p>El Usuario, Worker y Emprendedor reconocen que la Plataforma puede presentar fallos técnicos, interrupciones, bugs, errores de geolocalización, pérdida de información o indisponibilidad temporal.</p>
+            <p>El Usuario, Worker y Emprendedor reconocen que la Plataforma puede presentar fallos técnicos, interrupciones, errores de geolocalización, pérdida de información, indisponibilidad temporal o fallas de terceros proveedores (conectividad, dispositivos, sistemas operativos o servicios externos).</p>
 
             <h3>3. INDEPENDENCIA LABORAL, COMERCIAL Y FISCAL</h3>
             <p><strong>3.1 Ausencia Total de Relación Laboral</strong></p>
-            <p>Bajo ninguna circunstancia los Workers ni los Emprendedores serán considerados: Empleados, Dependientes, Agentes, Socios, Franquiciados, Representantes de iWorker. No existe subordinación técnica, jurídica ni económica.</p>
+            <p>Bajo ninguna circunstancia los Workers ni los Emprendedores serán considerados empleados, dependientes, agentes, socios, franquiciados o representantes de iWorker. No existe subordinación técnica, jurídica ni económica.</p>
+            
             <p><strong>3.2 Autonomía de las Partes</strong></p>
-            <p>Workers: fijan libremente precios, horarios, métodos, herramientas y condiciones. Asumen íntegramente los riesgos de su actividad.<br>
-            Emprendedores: son responsables exclusivos de la producción, calidad, legalidad, stock, precios y entrega de los productos exhibidos.</p>
+            <p><span class="highlight">Workers:</span> fijan libremente precios, horarios, métodos, herramientas y condiciones. Asumen íntegramente los riesgos de su actividad.<br>
+            <span class="highlight">Emprendedores:</span> son responsables exclusivos de la producción, calidad, legalidad, stock, precios y entrega de los productos exhibidos.</p>
+            
             <p><strong>3.3 Obligaciones Fiscales</strong></p>
-            <p>Cada parte es única y exclusivamente responsable de cumplir con sus obligaciones impositivas, previsionales, laborales y de facturación ante AFIP y demás organismos. iWorker no retiene, no percibe ni administra pagos.</p>
+            <p>Cada parte es única y exclusivamente responsable de cumplir con sus obligaciones impositivas, previsionales, laborales y de facturación ante AFIP y demás organismos competentes. iWorker no retiene, no percibe ni administra pagos.</p>
+            
             <p><strong>3.4 Exclusión de Intermediación Económica</strong></p>
-            <p>Todos los acuerdos económicos y pagos se realizan fuera de la Plataforma, de forma privada y directa. La monetización de iWorker proviene exclusivamente de: Publicidad, Donaciones voluntarias, Sponsors.</p>
+            <p>Todos los acuerdos económicos y pagos se realizan fuera de la Plataforma, de forma privada y directa. La monetización de iWorker proviene exclusivamente de: Publicidad, Donaciones voluntarias y Sponsors.</p>
 
             <h3>4. SEGURO DE ACCIDENTES PERSONALES (AP)</h3>
-            <p>Durante el registro, iWorker recomienda expresamente a los Workers contar con un Seguro de Accidentes Personales vigente. Dicha recomendación: Refuerza la condición de trabajador independiente, No implica exigencia, control ni cobertura por parte de iWorker. iWorker no asume responsabilidad alguna por accidentes, lesiones, incapacidades o fallecimientos ocurridos durante la ejecución de servicios.</p>
+            <p>Durante el registro, iWorker recomienda expresamente a los Workers contar con un Seguro de Accidentes Personales vigente. Dicha recomendación no implica exigencia, control ni cobertura por parte de iWorker. iWorker no asume responsabilidad alguna por accidentes, lesiones, incapacidades o fallecimientos ocurridos durante la ejecución de servicios.</p>
 
             <h3>5. EDAD MÍNIMA Y CAPACIDAD LEGAL</h3>
-            <p>El uso de iWorker está permitido únicamente a personas mayores de 16 años. Los menores de 16 años tienen prohibido registrarse o utilizar la Plataforma. Al registrarse, el usuario declara bajo juramento: Tener al menos 16 años, Poseer capacidad legal suficiente, Brindar información veraz.</p>
+            <p>El uso de iWorker está permitido únicamente a personas mayores de 16 años. Los menores de 16 años tienen prohibido registrarse o utilizar la Plataforma. Al registrarse, el usuario declara bajo juramento: Tener al menos 16 años, Poseer capacidad legal suficiente y brindar información veraz. La falsedad de datos habilita la suspensión o eliminación inmediata de la cuenta. iWorker no presta servicios dirigidos específicamente a menores ni promueve actividades prohibidas por la legislación laboral vigente.</p>
 
             <h3>6. FUNCIONAMIENTO DE LA PLATAFORMA</h3>
             <p><strong>6.1 Búsquedas, Distancia y Ordenamiento</strong></p>
-            <p>Los resultados de búsqueda no constituyen recomendaciones, no implican validación ni garantizan contrataciones. El ordenamiento responde a criterios técnicos automatizados: Distancia aproximada, Estado de disponibilidad, Aleatoriedad, Mejoras de visibilidad temporales.</p>
+            <p>Los resultados de búsqueda: No constituyen recomendaciones, no implican validación y no garantizan contrataciones. El ordenamiento responde a criterios técnicos automatizados como: Distancia aproximada, Estado de disponibilidad, Aleatoriedad y mejoras de visibilidad temporales. iWorker no garantiza posicionamiento preferencial permanente.</p>
+            
             <p><strong>6.2 Geolocalización</strong></p>
-            <p>Las funciones de distancia utilizan datos aproximados. iWorker no garantiza precisión absoluta ni responde por errores de ubicación.</p>
+            <p>Las funciones basadas en ubicación utilizan datos aproximados. iWorker no garantiza precisión absoluta ni responde por errores de localización.</p>
 
-            <h3>7. ANUNCIOS, CHAT Y COMUNICACIONES</h3>
-            <p><strong>7.1 Anuncios de Usuarios</strong></p>
-            <p>El contenido de anuncios es responsabilidad exclusiva del Usuario. iWorker no revisa ni valida previamente su legalidad o veracidad.</p>
-            <p><strong>7.2 Chat Privado</strong></p>
-            <p>El chat es una herramienta de comunicación entre partes. iWorker no participa en conversaciones, no supervisa acuerdos ni garantiza identidades. Toda interacción se realiza bajo exclusivo riesgo de los usuarios.</p>
+            <h3>7. CONTRATOS DIGITALES Y CÓDIGO DE CIERRE</h3>
+            <p>Cuando un Usuario y un Worker coinciden en una oferta, anuncio o acuerdo dentro de la Plataforma, se genera un contrato digital interno, de carácter exclusivamente tecnológico. Este contrato: No constituye un contrato laboral, civil ni comercial tradicional; No implica certificación de cumplimiento, calidad o resultado; No genera garantía alguna por parte de iWorker.</p>
+            <p>El sistema puede generar un código único que el Usuario entrega voluntariamente al Worker al finalizar el servicio. Dicho código permite cerrar el estado del contrato digital dentro de la Plataforma con fines estadísticos, técnicos y de integridad del sistema. La falta de entrega o carga del código no genera responsabilidad para iWorker ni obliga a ninguna de las partes. iWorker no interviene en disputas, desacuerdos o reclamos relacionados con dichos contratos digitales.</p>
 
-            <h3>8. USO PROHIBIDO – TOLERANCIA CERO</h3>
-            <p>Está estrictamente prohibido utilizar iWorker para: Pornografía o contenido sexual explícito, Drogas o sustancias ilegales, Prostitución, trata o servicios sexuales encubiertos, Violencia, odio, discriminación o acoso, Venta de productos ilícitos, Infracción de derechos de autor o marca. El uso de profesiones encubiertas para ofrecer actividades ilegales constituye infracción grave.</p>
+            <h3>8. ANUNCIOS, CHAT Y COMUNICACIONES</h3>
+            <p>El contenido de anuncios y mensajes es responsabilidad exclusiva de los usuarios. iWorker no revisa, valida ni supervisa conversaciones privadas. Toda interacción se realiza bajo exclusivo riesgo de las partes. La eventual moderación de contenido no implica control, supervisión ni asunción de responsabilidad.</p>
 
-            <h3>9. COPYRIGHT Y CONTENIDOS DE TERCEROS</h3>
-            <p>Los usuarios garantizan ser titulares o contar con derechos sobre el contenido publicado. Ante una denuncia fundada por infracción de derechos: iWorker podrá remover el contenido sin previo aviso. No asume responsabilidad por conflictos entre terceros.</p>
+            <h3>9. USO PROHIBIDO – TOLERANCIA CERO</h3>
+            <p>Está estrictamente prohibido utilizar iWorker para: Pornografía o contenido sexual explícito, Drogas o sustancias ilegales, Prostitución, trata o servicios sexuales encubiertos, Violencia, odio, discriminación o acoso, Venta de productos ilícitos, Infracción de derechos de autor o marca. El uso de profesiones encubiertas para ofrecer actividades ilegales constituye infracción grave. La violación habilita la eliminación inmediata del contenido, el bloqueo definitivo de la cuenta y la colaboración con autoridades si corresponde.</p>
 
-            <h3>10. LIMITACIÓN DE RESPONSABILIDAD</h3>
-            <p>iWorker no será responsable por: Daños personales o materiales, Accidentes, Delitos, Fraudes, Incumplimientos contractuales, Pérdidas económicas derivados de actos u omisiones de Usuarios, Workers, Emprendedores o terceros.</p>
+            <h3>10. COPYRIGHT Y CONTENIDOS DE TERCEROS</h3>
+            <p>Los usuarios garantizan ser titulares o contar con derechos suficientes sobre el contenido publicado. Ante una denuncia fundada, iWorker podrá remover el contenido sin previo aviso y sin asumir responsabilidad por conflictos entre terceros.</p>
 
             <h3>11. PROPIEDAD INTELECTUAL Y MARCA REGISTRADA</h3>
-            <p>Todo el software, diseño, código, interfaces, nombre comercial, logotipo e identidad visual son propiedad exclusiva de iWorker. La marca “iWorker” se encuentra debidamente registrada ante el Instituto Nacional de la Propiedad Industrial (INPI) conforme a la Ley N.º 22.362. El uso no autorizado dará lugar a las acciones legales correspondientes.</p>
+            <p>Todo el software, diseño, código, interfaces, nombre comercial, logotipo e identidad visual son propiedad exclusiva de iWorker. La marca “iWorker” se encuentra debidamente registrada ante el INPI conforme a la Ley N.º 22.362.</p>
 
             <h3>14. INDEMNIDAD</h3>
             <p>El Usuario, Worker y Emprendedor se obligan a mantener indemne a iWorker frente a cualquier reclamo derivado del uso indebido de la Plataforma.</p>
@@ -128,12 +128,32 @@
             <h2>POLÍTICA DE PRIVACIDAD</h2>
             <p><strong>Última actualización:</strong> 8 de enero de 2026</p>
             <h3>12. POLÍTICA DE PRIVACIDAD Y DATOS PERSONALES</h3>
-            <p>iWorker cumple con la Ley N.º 25.326. La base de datos se encuentra registrada ante la Agencia de Acceso a la Información Pública (AAIP), actuando iWorker como Responsable del Tratamiento.</p>
-            <p><strong>12.1 Derechos ARCO</strong></p>
-            <p>Los titulares pueden ejercer sus derechos de: Acceso, Rectificación, Supresión.</p>
-            <p><strong>12.2 Eliminación de Cuenta</strong></p>
-            <p>La baja puede solicitarse desde la App. Para verificar identidad, podrá requerirse DNI al correo: <strong>enemydev.iworker@gmail.com</strong>. Plazo máximo: 15 días hábiles.</p>
-            <p><strong>12.3 Cooperación con Autoridades</strong></p>
+            <p>iWorker cumple con la Ley N.º 25.326. La base de datos se encuentra registrada ante la Agencia de Acceso a la Información Pública (AAIP).</p>
+            
+            <p><strong>12.1 Datos Recopilados</strong></p>
+            <p>iWorker podrá recopilar y tratar, entre otros:</p>
+            <ul>
+                <li>Nombre y apellido</li>
+                <li>Foto de perfil</li>
+                <li>Dirección de correo electrónico</li>
+                <li>Número de teléfono</li>
+                <li>Edad y sexo</li>
+                <li>Profesión, estudios y experiencia laboral</li>
+                <li>Ubicación actual o aproximada</li>
+                <li>Dirección de local de trabajo (si existiere)</li>
+                <li>Fotografías de documentos de identidad (solo para verificación)</li>
+            </ul>
+
+            <p><strong>12.2 Finalidad del Uso</strong></p>
+            <p>Los datos se utilizan exclusivamente para: Identificar a los usuarios, permitir contacto entre partes, mostrar con quién se está tratando, seguridad, prevención de fraudes y funcionamiento de la Plataforma. Los datos visibles lo son por decisión del usuario y dentro del ecosistema iWorker.</p>
+
+            <p><strong>12.3 Derechos ARCO</strong></p>
+            <p>Los titulares pueden ejercer derechos de Acceso, Rectificación y Supresión.</p>
+
+            <p><strong>12.4 Eliminación de Cuenta</strong></p>
+            <p>La baja puede solicitarse desde la App. Para verificar identidad, podrá requerirse DNI vía correo electrónico a: <strong>enemydev.iworker@gmail.com</strong>. Plazo máximo: 15 días hábiles.</p>
+
+            <p><strong>12.5 Cooperación con Autoridades</strong></p>
             <p>Los datos solo serán cedidos bajo orden judicial o riesgo grave e inminente de vida.</p>
         </section>
 
@@ -143,7 +163,7 @@
             <h2>POLÍTICA DE COOKIES</h2>
             <p><strong>Última actualización:</strong> 8 de enero de 2026</p>
             <h3>13. POLÍTICA DE COOKIES</h3>
-            <p>iWorker utiliza cookies y tecnologías similares para: Funcionamiento técnico, Seguridad, Estadísticas anónimas, Publicidad no invasiva. El usuario puede configurar o desactivar cookies desde su dispositivo.</p>
+            <p>iWorker utiliza cookies y tecnologías similares para: Funcionamiento técnico, Seguridad, Estadísticas anónimas y publicidad no invasiva. El usuario puede configurar o desactivar cookies desde su dispositivo.</p>
         </section>
 
         <footer style="margin-top: 50px; text-align: center; font-size: 12px; color: #666;">
@@ -152,7 +172,6 @@
     </div>
 
     <script>
-        // Smooth scroll para los enlaces internos
         document.querySelectorAll('nav.local-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
