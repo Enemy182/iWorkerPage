@@ -66,7 +66,7 @@
     <audio src="iworkersong.mp3" autoplay loop></audio>
     <script>
         const bgAudio = document.querySelector('audio');
-        bgAudio.volume = 0.2;
+        bgAudio.volume = 0.15;
     </script>
 
     <nav id="desktop-nav">
@@ -113,13 +113,110 @@
     </footer>
 
     <script>
-        const infoModal = document.getElementById('info-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalBody = document.getElementById('modal-body');
-        const mobileMenu = document.getElementById('mobile-menu');
+  const infoModal = document.getElementById('info-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-        const genericContent = { /* TODO TU CONTENIDO ORIGINAL, SIN CAMBIOS */ };
+  const genericContent = {
+    "quien": {
+      title: "👤 ¿Quién soy?",
+      text: `
+        <p>Mi nombre es <strong>Alejandro Simos</strong>. Actualmente trabajo como técnico y administrador de redes informáticas en el ámbito municipal, y desde hace años desarrollo aplicaciones y soluciones digitales de manera independiente.</p>
+        <p>La programación comenzó como un hobby personal, una forma de aprender, crear y resolver problemas reales. Con el tiempo, ese hobby se transformó en una herramienta concreta para ayudar a otros.</p>
+        <p><strong>iWorker</strong> nace desde esa experiencia: de observar cómo el talento local, los trabajadores independientes y los pequeños emprendedores muchas veces no tienen visibilidad, mientras que las personas que necesitan sus servicios no saben dónde buscarlos.</p>
+        <p>Este proyecto no surge desde una gran empresa ni una estructura corporativa, sino desde la convicción de que la tecnología puede —y debe— estar al servicio de la comunidad.</p>
+      `
+    },
 
+    "mision": {
+      title: "🚀 Misión",
+      text: `
+        <p>La misión de iWorker es <strong>conectar de forma simple, directa y transparente</strong> a personas que necesitan resolver un problema con trabajadores y emprendedores dispuestos a hacerlo.</p>
+        <p>Buscamos:</p>
+        <ul>
+          <li><strong>Conectar:</strong> Reducir la distancia entre la necesidad y la solución, sin intermediarios innecesarios.</li>
+          <li><strong>Visibilizar:</strong> Dar exposición real al trabajo independiente y a los emprendimientos locales.</li>
+          <li><strong>Simplificar:</strong> Ofrecer una herramienta clara, accesible y fácil de usar.</li>
+          <li><strong>Respetar:</strong> Mantener un modelo justo, sin comisiones ocultas ni condiciones abusivas.</li>
+        </ul>
+        <p>iWorker no busca reemplazar el trato humano, sino facilitarlo.</p>
+      `
+    },
+
+    "vision": {
+      title: "🌱 Visión",
+      text: `
+        <p>La visión de iWorker es convertirse en una <strong>plataforma de referencia a nivel local y regional</strong> para el trabajo independiente y los pequeños emprendimientos.</p>
+        <p>A futuro, iWorker aspira a:</p>
+        <ul>
+          <li>Consolidar una comunidad basada en la confianza y la reputación.</li>
+          <li>Expandirse gradualmente a otras ciudades y regiones.</li>
+          <li>Incorporar herramientas que ayuden a profesionalizar el trabajo independiente.</li>
+          <li>Demostrar que es posible crear tecnología útil sin explotar a quienes la usan.</li>
+        </ul>
+        <p>El crecimiento será progresivo, responsable y siempre enfocado en el beneficio real de los usuarios.</p>
+      `
+    },
+
+    "donaciones": {
+      title: "❤️ Donaciones",
+      text: `
+        <p>iWorker es y seguirá siendo una plataforma de acceso gratuito en sus funciones principales.</p>
+        <p>Las donaciones no son obligatorias y existen únicamente como una forma voluntaria de apoyar el desarrollo, mantenimiento y mejora continua del proyecto.</p>
+        <p>Los fondos recibidos se destinan a:</p>
+        <ul>
+          <li>Infraestructura técnica (servidores, servicios, seguridad).</li>
+          <li>Mejoras de la aplicación y nuevas funcionalidades.</li>
+          <li>Soporte y mantenimiento.</li>
+        </ul>
+        <p>A largo plazo, la visión es poder reinvertir en iniciativas que ayuden a reducir la brecha digital y laboral.</p>
+      `
+    },
+
+    "sponsor": {
+      title: "✨ Sponsors",
+      text: `
+        <p>iWorker ofrece un espacio para empresas y organizaciones que compartan una visión de desarrollo local, inclusión laboral y uso responsable de la tecnología.</p>
+        <p>Ser sponsor de iWorker implica:</p>
+        <ul>
+          <li><strong>Visibilidad:</strong> Presencia de marca dentro de una comunidad en crecimiento.</li>
+          <li><strong>Impacto social:</strong> Apoyo directo a trabajadores independientes y emprendedores.</li>
+          <li><strong>Asociación:</strong> Vincular la marca a un proyecto transparente y de base local.</li>
+        </ul>
+        <p>Los acuerdos de sponsorship son claros, limitados y respetuosos de la experiencia del usuario.</p>
+      `
+    },
+
+    "contacto": {
+      title: "✉️ Contacto",
+      text: `
+        <p>Para consultas, sugerencias, reportes o propuestas:</p>
+        <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
+        <p>La comunicación directa es parte fundamental del crecimiento de iWorker.</p>
+      `
+    },
+
+    "faq": {
+      title: "❓ Preguntas Frecuentes",
+      text: `
+        <ul>
+          <li>
+            <strong>¿iWorker es gratuito?</strong><br>
+            Sí. El registro y el uso básico de la plataforma son gratuitos. iWorker no cobra comisiones por trabajos ni exige tarjetas de crédito.
+          </li>
+          <li>
+            <strong>¿Necesito registrarme para usar iWorker?</strong><br>
+            Sí. El registro es necesario para garantizar un entorno más seguro, trazable y confiable para todos los usuarios.
+          </li>
+          <li>
+            <strong>¿iWorker garantiza trabajos o clientes?</strong><br>
+            No. iWorker es una herramienta de contacto y visibilidad. Las condiciones y acuerdos se realizan entre las partes.
+          </li>
+        </ul>
+      `
+    }
+  };
         function openModal(key) {
             const content = genericContent[key];
             if (!content) return;
