@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Exo+2:wght@800&display=swap" rel="stylesheet">
     <style>
         @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
         body {
             font-family: 'Montserrat', sans-serif; 
             display: flex; flex-direction: column; justify-content: space-between; align-items: center;
@@ -29,8 +30,9 @@
         #mobile-menu a { color: #eee; text-decoration: none; font-size: 20px; padding: 15px 10px; border-bottom: 1px solid #333; }
 
         header { width: 100%; animation: fade-in 1.2s ease-out; margin-top: 5vh; }
-        #header-logo-title { width: 360px; filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); }
-        #slogan { font-size: 22px; color: #ccc; margin-top: 10px; font-style: italic; }
+        /* Añadido max-width: 100% para evitar desbordes en cualquier resolución */
+        #header-logo-title { width: 360px; max-width: 100%; filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.6)); }
+        #slogan { font-size: 22px; color: #ccc; margin-top: 10px; font-style: italic; padding: 0 10px; }
 
         /* --- BOTÓN 3D --- */
         #download-btn {
@@ -39,6 +41,8 @@
             font-size: 24px; font-weight: 700; text-decoration: none; border-radius: 12px;
             box-shadow: 0 10px 0 #b33600, 0 15px 20px rgba(0, 0, 0, 0.4);
             transition: all 0.1s; position: relative; top: 0;
+            max-width: 90%; /* Evita que el botón se salga en pantallas muy angostas */
+            box-sizing: border-box;
         }
         #download-btn:active { top: 8px; box-shadow: 0 2px 0 #b33600, 0 5px 10px rgba(0, 0, 0, 0.3); transform: scale(0.98); }
         #download-btn img { width: 30px; margin-left: 15px; }
@@ -57,12 +61,61 @@
         .legal-text h3 { color: #eee; margin-top: 25px; border-left: 3px solid #ff4d00; padding-left: 10px; }
         .legal-text p { margin-bottom: 15px; }
 
-        @media (max-width: 600px) { #desktop-nav { display: none; } #hamburger-icon { display: flex; } #header-logo-title { width: 280px; } .modal-content { padding: 20px; } }
+        /* --- MEDIA QUERY OPTIMIZADA PARA MÓVILES --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px; /* Reducido padding general */
+            }
+            
+            #desktop-nav { display: none; }
+            
+            #hamburger-icon { 
+                display: flex; 
+                top: 20px; 
+                right: 20px; 
+            }
+            
+            header {
+                margin-top: 8vh; /* Un poco más de espacio arriba */
+            }
+
+            /* Logo más pequeño y ajustado */
+            #header-logo-title { 
+                width: 220px; /* Reducido de 360px a 220px */
+            }
+            
+            /* Slogan más legible y pequeño */
+            #slogan {
+                font-size: 16px; /* Reducido de 22px a 16px */
+                margin-top: 15px;
+                line-height: 1.4;
+            }
+
+            /* Botón adaptado */
+            #download-btn {
+                padding: 15px 30px; /* Menos relleno */
+                font-size: 18px; /* Texto más chico */
+                width: 85%; /* Ancho relativo */
+            }
+            
+            #download-btn img {
+                width: 22px; /* Icono ajustado */
+                margin-left: 10px;
+            }
+
+            /* Footer mejorado para touch */
+            #legal-nav a {
+                display: block; /* Enlaces en bloque vertical */
+                margin: 8px 0;
+                padding: 5px;
+            }
+
+            .modal-content { padding: 20px; margin-top: 15%; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- AUDIO DE FONDO EN LOOP -->
     <audio src="iworkersong.mp3" autoplay loop></audio>
     <script>
         const bgAudio = document.querySelector('audio');
@@ -104,8 +157,9 @@
 
     <footer>
         <nav id="legal-nav">
-            <a href="terms.html#tyc">TÉRMINOS Y CONDICIONES DE USO</a> |
-            <a href="terms.html#privacidad">POLÍTICA DE PRIVACIDAD</a> |
+            <a href="terms.html#tyc">TÉRMINOS Y CONDICIONES DE USO</a>
+            <span style="display: none;"> | </span> <a href="terms.html#privacidad">POLÍTICA DE PRIVACIDAD</a>
+            <span style="display: none;"> | </span>
             <a href="terms.html#cookies">POLÍTICA DE COOKIES</a>
         </nav>
         <p id="trademark">iWorker® 2025 - Todos los derechos reservados.</p>
