@@ -62,19 +62,23 @@
         }
 
         /* --- NAVBAR --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(15px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        <nav>
+        <a href="#" class="logo-text">iWorker<span>.</span></a>
+        
+        <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+
+        <div class="nav-links" id="navLinks">
+            <button onclick="openModal('mision'); toggleMenu()">Misión</button>
+            <button onclick="openModal('vision'); toggleMenu()">Visión</button>
+            <button onclick="openModal('donaciones'); toggleMenu()">Donaciones</button>
+            <button onclick="openModal('sponsor'); toggleMenu()">Sponsors</button>
+            <button onclick="openModal('faq'); toggleMenu()">FAQ</button>
+            <button onclick="openModal('contacto'); toggleMenu()">Contacto</button>
+            <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
+        </div>
+
+        <a href="#" class="nav-cta-desktop" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
+    </nav>
 
         .logo-text {
             font-family: var(--font-head);
@@ -607,8 +611,8 @@
         </div>
 
         <div class="legal-link-container">
-            <a href="terminos.html" class="legal-link">Ver Términos y Condiciones completos</a>
-            <button onclick="openModal('legales')" class="legal-btn-ghost">Ver Resumen Legal</button>
+            <a href="terms.html" class="legal-link">Términos y Condiciones</a>
+            <button onclick="openModal('legales')" class="legal-btn-ghost">Resumen Legal</button>
         </div>
     </section>
 
@@ -728,20 +732,84 @@
 
             },
             "legales": {
-                title: "⚖️ Resumen Legal iWorker",
-                text: `
-                    <p>Este es un resumen de los puntos clave. Para el texto completo, visita nuestros Términos y Condiciones.</p>
-                    <ul>
-                        <li><strong>1. Intermediación Pura:</strong> iWorker es un puente tecnológico. No prestamos servicios, no ejecutamos trabajos ni vendemos productos directamente.</li>
-                        <li><strong>2. Independencia Total:</strong> No existe relación laboral. Los Workers y Emprendedores son autónomos, fijan sus precios y horarios, y son responsables de sus obligaciones fiscales y legales.</li>
-                        <li><strong>3. Responsabilidad:</strong> iWorker no certifica identidades ni garantiza resultados. La contratación es un acuerdo privado entre las partes.</li>
-                        <li><strong>4. Edad Mínima:</strong> Plataforma exclusiva para mayores de 16 años.</li>
-                        <li><strong>5. Uso Gratuito:</strong> El uso básico es gratuito. iWorker se sostiene mediante publicidad, donaciones y sponsors, sin comisiones ocultas por intermediación de pagos.</li>
-                        <li><strong>6. Seguridad:</strong> Recomendamos a los Workers contar con Seguro de Accidentes Personales (AP), aunque iWorker no lo provee ni fiscaliza.</li>
-                    </ul>
-                    <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">Última actualización: Enero 2026 - Comodoro Rivadavia, Argentina.</p>
-                `
-            }
+    title: "⚖️ Resumen Legal iWorker",
+    text: `
+        <p>
+            Este es un resumen informativo de los puntos legales más importantes.
+            El uso de iWorker implica la aceptación de nuestros Términos y Condiciones,
+            Política de Privacidad y Política de Cookies completas, disponibles en el sitio web oficial.
+        </p>
+
+        <ul>
+            <li>
+                <strong>1. Plataforma de intermediación:</strong>
+                iWorker es una herramienta tecnológica que facilita visibilidad, contacto y publicación
+                entre Usuarios, Workers y Emprendedores. No presta servicios, no ejecuta trabajos,
+                no vende productos ni intermedia pagos.
+            </li>
+
+            <li>
+                <strong>2. Independencia total:</strong>
+                No existe relación laboral, comercial ni societaria entre iWorker y los Workers o Emprendedores.
+                Cada parte fija libremente precios, condiciones y horarios, y asume sus propias obligaciones
+                legales, fiscales y previsionales.
+            </li>
+
+            <li>
+                <strong>3. Responsabilidad y garantías:</strong>
+                iWorker no certifica identidades, capacidades ni resultados.
+                Las relaciones y acuerdos se realizan de forma privada entre las partes.
+                La plataforma se brinda “tal cual” (AS IS), sin garantías de funcionamiento continuo
+                ni resultados esperados.
+            </li>
+
+            <li>
+                <strong>4. Pagos y monetización:</strong>
+                Todos los acuerdos económicos se realizan fuera de la aplicación.
+                iWorker no cobra comisiones por trabajos ni ventas.
+                La plataforma se sostiene mediante publicidad, donaciones voluntarias,
+                sponsors y servicios de visibilidad opcionales.
+            </li>
+
+            <li>
+                <strong>5. Edad mínima:</strong>
+                El uso de iWorker está permitido únicamente a personas mayores de 16 años.
+                El registro implica declarar información veraz y capacidad legal suficiente.
+            </li>
+
+            <li>
+                <strong>6. Geolocalización y ordenamiento:</strong>
+                Las búsquedas y distancias son aproximadas y automáticas.
+                El orden de resultados no implica recomendación, validación ni garantía de contratación.
+            </li>
+
+            <li>
+                <strong>7. Seguridad y seguros:</strong>
+                Se recomienda a los Workers contar con Seguro de Accidentes Personales (AP).
+                iWorker no lo provee, controla ni asume responsabilidad por accidentes o daños.
+            </li>
+
+            <li>
+                <strong>8. Datos personales:</strong>
+                Los datos se tratan conforme a la Ley 25.326.
+                La base de datos está registrada y los usuarios pueden ejercer sus derechos
+                de acceso, rectificación y eliminación.
+            </li>
+
+            <li>
+                <strong>9. Uso prohibido:</strong>
+                Está prohibido utilizar la plataforma para actividades ilegales,
+                contenido sexual, violencia, discriminación o venta de productos ilícitos.
+                Las infracciones pueden derivar en bloqueo permanente.
+            </li>
+        </ul>
+
+        <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">
+            Última actualización: Enero 2026 · Comodoro Rivadavia, Argentina.
+            Jurisdicción exclusiva: Tribunales Ordinarios de la Provincia del Chubut.
+        </p>
+    `
+}
         };
 
         const modalBackdrop = document.getElementById('modalBackdrop');
