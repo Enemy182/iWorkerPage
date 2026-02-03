@@ -109,7 +109,15 @@
         .nav-links button:hover { color: white; } 
         .nav-links button:hover::after { width: 100%; } 
 
-        /* --- ESTILOS DEL BOTÓN HAMBURGUESA Y MENÚ --- */
+        /* --- ESTILOS NAVBAR MOBILE --- */
+        
+        /* Contenedor para agrupar botón Beta y Hamburguesa */
+        .nav-mobile-right {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Espacio entre botón Beta y Hamburguesa */
+        }
+
         .hamburger-btn {
             display: none; /* Oculto en PC */
             background: none;
@@ -132,9 +140,21 @@
             display: inline-block;
         }
 
-        .nav-cta-mobile { display: none; } /* Oculto en PC */
+        /* Botón Beta Móvil */
+        .nav-cta-mobile { 
+            display: none; /* Por defecto oculto en PC */
+            background: var(--brand-primary);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+            transition: var(--transition);
+        }
 
-        /* --- HERO SECTION REESTRUCTURADO --- */ 
+        /* --- HERO SECTION --- */ 
         .hero { 
             padding: 140px 8% 100px 8%; 
             min-height: 100vh; 
@@ -320,8 +340,9 @@
         } 
 
         .role-card { 
-            aspect-ratio: 16 / 9;  
-            position: relative;
+            /* PC: CUADRADA */
+            aspect-ratio: 1 / 1;  
+            position: relative; 
             border-radius: 12px; 
             overflow: hidden; 
             background: var(--bg-card); 
@@ -410,7 +431,9 @@
         /* Ajuste Mobile para tarjetas */ 
         @media (max-width: 600px) { 
             .cards-grid { grid-template-columns: 1fr; } 
-            .role-card { aspect-ratio: 1 / 1.1; }  
+            
+            /* MOBILE: 16/9 */
+            .role-card { aspect-ratio: 16 / 9; }  
         } 
          
         /* --- MODAL MODERNO --- */ 
@@ -441,8 +464,8 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
             
             /* --- MEJORA DE MODALES (SCROLLABLE) --- */
-            max-height: 85vh; /* Altura máxima del 85% de la pantalla */
-            overflow-y: auto; /* Habilita SCROLL si el texto es largo */
+            max-height: 85vh; 
+            overflow-y: auto; 
             display: flex;
             flex-direction: column;
         }
@@ -493,6 +516,9 @@
         /* --- RESPONSIVE MOBILE ACTUALIZADO --- */ 
         @media (max-width: 1000px) { 
             
+            /* Hacemos visible el botón Beta móvil */
+            .nav-cta-mobile { display: inline-block; }
+
             /* Navbar Mobile */
             .hamburger-btn { display: block; }
             .nav-cta-desktop { display: none; } /* Ocultamos el botón beta de escritorio */
@@ -522,18 +548,6 @@
                 width: 100%;
                 text-align: left;
                 border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-
-            .nav-cta-mobile {
-                display: inline-block;
-                text-align: center;
-                background: var(--brand-primary);
-                color: white;
-                padding: 12px;
-                border-radius: 8px;
-                font-weight: 700;
-                margin-top: 10px;
-                text-decoration: none;
             }
 
             @keyframes slideDown {
@@ -572,7 +586,10 @@
     <nav>
         <a href="#" class="logo-text">iWorker<span>.</span></a>
         
-        <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+        <div class="nav-mobile-right">
+            <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
+            <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+        </div>
 
         <div class="nav-links" id="navLinks">
             <button onclick="openModal('mision'); toggleMenu()">Misión</button>
@@ -581,8 +598,7 @@
             <button onclick="openModal('sponsor'); toggleMenu()">Sponsors</button>
             <button onclick="openModal('faq'); toggleMenu()">FAQ</button>
             <button onclick="openModal('contacto'); toggleMenu()">Contacto</button>
-            <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
-        </div>
+            </div>
 
         <a href="#" class="nav-cta-desktop" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
     </nav>
@@ -671,7 +687,7 @@
         </div> 
 
         <div class="legal-link-container"> 
-            <a href="terms.html" class="legal-link">Términos y Condiciones</a> 
+            <a href="terms.html" class="legal-link">Términos y Condiciones, Políticas de Privacidad y Uso de Cookies.</a> 
             <button onclick="openModal('legales')" class="legal-btn-ghost">Resumen Legal</button> 
         </div> 
     </section> 
@@ -849,7 +865,6 @@
             } 
         }
 
-        // --- FUNCION NUEVA AGREGADA PARA EL MENU ---
         function toggleMenu() {
             const nav = document.getElementById('navLinks');
             // Alternar clase 'active' para mostrar/ocultar
