@@ -62,23 +62,19 @@
         }
 
         /* --- NAVBAR --- */
-        <nav>
-        <a href="#" class="logo-text">iWorker<span>.</span></a>
-        
-        <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
-
-        <div class="nav-links" id="navLinks">
-            <button onclick="openModal('mision'); toggleMenu()">Misión</button>
-            <button onclick="openModal('vision'); toggleMenu()">Visión</button>
-            <button onclick="openModal('donaciones'); toggleMenu()">Donaciones</button>
-            <button onclick="openModal('sponsor'); toggleMenu()">Sponsors</button>
-            <button onclick="openModal('faq'); toggleMenu()">FAQ</button>
-            <button onclick="openModal('contacto'); toggleMenu()">Contacto</button>
-            <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
-        </div>
-
-        <a href="#" class="nav-cta-desktop" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
-    </nav>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
 
         .logo-text {
             font-family: var(--font-head);
@@ -117,7 +113,18 @@
         .nav-links button:hover { color: white; }
         .nav-links button:hover::after { width: 100%; }
 
-        .nav-cta {
+        /* --- ESTILOS DEL BOTÓN HAMBURGUESA Y MENÚ --- */
+        .hamburger-btn {
+            display: none; /* Oculto en PC */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-cta-desktop {
             background: var(--brand-primary);
             color: white;
             padding: 8px 20px;
@@ -126,7 +133,11 @@
             font-weight: 700;
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            display: inline-block;
         }
+
+        .nav-cta-mobile { display: none; } /* Oculto en PC */
+
 
         /* --- HERO SECTION REESTRUCTURADO --- */
         .hero {
@@ -421,12 +432,6 @@
         }
         .legal-btn-ghost:hover { border-color: var(--text-main); color: var(--text-main); }
 
-        /* Ajuste Mobile para que las tarjetas no sean gigantes */
-        @media (max-width: 600px) {
-            .cards-grid { grid-template-columns: 1fr; }
-            /* En celular mantenemos una proporción ligera rectangular para que entre bien el texto */
-            .role-card { aspect-ratio: 1 / 1.1; } 
-        }
         
         /* --- MODAL MODERNO --- */
         
@@ -454,7 +459,19 @@
             transform: scale(0.9);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            
+            /* SCROLL FIX */
+            max-height: 85vh; /* Altura máxima del 85% de la pantalla */
+            overflow-y: auto; /* Habilita SCROLL si el texto es largo */
+            display: flex;
+            flex-direction: column;
         }
+        
+        /* Personalización de la barra de scroll del modal */
+        .modal-container::-webkit-scrollbar { width: 8px; }
+        .modal-container::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .modal-container::-webkit-scrollbar-track { background: transparent; }
+
 
         .modal-backdrop.active { display: flex; opacity: 1; }
         .modal-backdrop.active .modal-container { transform: scale(1); }
@@ -511,10 +528,67 @@
             .profile-img-wrapper { flex: auto; }
             .profile-img { width: 250px; height: 250px; margin: 0 auto; }
 
-            .nav-links { display: none; }
+            /* Navbar Mobile */
+            .hamburger-btn { display: block; }
+            .nav-cta-desktop { display: none; } /* Ocultamos el botón beta de escritorio */
+
+            .nav-links {
+                display: none; /* Oculto por defecto */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98); /* Fondo oscuro sólido */
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+                gap: 20px;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-links.active { display: flex; } /* Clase para mostrar menú */
+
+            /* Botones del menú más grandes para tocar con el dedo */
+            .nav-links button {
+                font-size: 1.1rem;
+                padding: 10px;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .nav-cta-mobile {
+                display: inline-block;
+                text-align: center;
+                background: var(--brand-primary);
+                color: white;
+                padding: 12px;
+                border-radius: 8px;
+                font-weight: 700;
+                margin-top: 10px;
+                text-decoration: none;
+            }
+
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
             
             /* Ajuste de tarjetas en mobile si es necesario */
-            .cards-grid { gap: 20px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            /* En celular mantenemos una proporción ligera rectangular para que entre bien el texto */
+            .role-card { aspect-ratio: 1 / 1.1; } 
+
+            /* Modal en Mobile - Arreglo visual */
+            .modal-container {
+                width: 95%; /* Más ancho en celular */
+                padding: 25px; /* Menos padding */
+                margin: 0 10px;
+            }
+            .modal-title { font-size: 1.5rem; }
+            .modal-body { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -523,21 +597,28 @@
     <nav>
         <a href="#" class="logo-text">iWorker<span>.</span></a>
         
-        <div class="nav-links">
-            <button onclick="openModal('mision')">Misión</button>
-            <button onclick="openModal('vision')">Visión</button>
-            <button onclick="openModal('donaciones')">Donaciones</button>
-            <button onclick="openModal('sponsor')">Sponsors</button>
-            <button onclick="openModal('faq')">FAQ</button>
-            <button onclick="openModal('contacto')">Contacto</button>
+        <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+
+        <div class="nav-links" id="navLinks">
+            <button onclick="openModal('mision'); toggleMenu()">Misión</button>
+            <button onclick="openModal('vision'); toggleMenu()">Visión</button>
+            <button onclick="openModal('donaciones'); toggleMenu()">Donaciones</button>
+            <button onclick="openModal('sponsor'); toggleMenu()">Sponsors</button>
+            <button onclick="openModal('faq'); toggleMenu()">FAQ</button>
+            <button onclick="openModal('contacto'); toggleMenu()">Contacto</button>
+            <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
         </div>
 
-        <a href="#" class="nav-cta" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
+        <a href="#" class="nav-cta-desktop" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
     </nav>
 
     <header class="hero">
         <div class="bg-glow"></div>
 
+        <div class="hero-logo-container">
+            <img src="logo.png" alt="iWorker Logo" class="hero-logo-img">
+        </div>
+        
         <div class="hero-content-wrapper">
             <div class="hero-text">
                 <h1>Talento Local <br><span>Sin Límites</span></h1>
@@ -631,185 +712,135 @@
     <script>
         const contentData = {
             "mision": {
-
                 title: "🚀 Misión",
-
                 text: `
-
                     <p>Conectar de forma simple, directa y transparente a personas con necesidades reales con trabajadores dispuestos a resolverlas.</p>
-
                     <ul>
-
                         <li><strong>Conectar:</strong> Sin intermediarios innecesarios.</li>
-
                         <li><strong>Visibilizar:</strong> Exposición real al trabajo local.</li>
-
                         <li><strong>Simplificar:</strong> Herramientas claras y accesibles.</li>
-
                         <li><strong>Respetar:</strong> Modelos justos sin condiciones abusivas.</li>
-
                     </ul>
-
                 `
-
             },
-
             "vision": {
-
                 title: "🌱 Visión",
-
                 text: `
-
                     <p>Convertirse en la plataforma de referencia regional para el trabajo independiente.</p>
-
                     <ul>
-
                         <li>Consolidar una comunidad basada en la confianza.</li>
-
                         <li>Expandirse gradualmente a otras ciudades.</li>
-
                         <li>Demostrar que la tecnología puede ser socialmente responsable.</li>
-
                     </ul>
-
                 `
-
             },
-
             "donaciones": {
-
                 title: "❤️ Donaciones",
-
                 text: `
-
                     <p>iWorker es gratuito. Las donaciones voluntarias mantienen viva la infraestructura técnica (servidores y seguridad) y permiten la mejora continua de la plataforma.</p>
-
                 `
-
             },
-
             "sponsor": {
-
                 title: "✨ Sponsors",
-
                 text: `
-
                     <p>Buscamos organizaciones que compartan nuestra visión de inclusión laboral y desarrollo local. Ser sponsor ofrece visibilidad dentro de una comunidad activa y comprometida.</p>
-
                 `
-
             },
-
             "contacto": {
-
                 title: "✉️ Contacto",
-
                 text: `
-
                     <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
-
                 `
-
             },
-
             "faq": {
-
                 title: "❓ Preguntas Frecuentes",
-
                 text: `
-
                     <ul>
-
                         <li><strong>¿Es gratuito?</strong> Sí, el registro y uso básico no tienen costo.</li>
-
                         <li><strong>¿Garantizan el trabajo?</strong> No, somos una herramienta de visibilidad; el acuerdo es privado entre las partes.</li>
-
                         <li><strong>¿Necesito seguro?</strong> Recomendamos a los Workers contar con Seguro de Accidentes Personales para su tranquilidad.</li>
-
                     </ul>
-
                 `
-
             },
             "legales": {
-    title: "⚖️ Resumen Legal iWorker",
-    text: `
-        <p>
-            Este es un resumen informativo de los puntos legales más importantes.
-            El uso de iWorker implica la aceptación de nuestros Términos y Condiciones,
-            Política de Privacidad y Política de Cookies completas, disponibles en el sitio web oficial.
-        </p>
+                title: "⚖️ Resumen Legal iWorker",
+                text: `
+                    <p>
+                        Este es un resumen informativo de los puntos legales más importantes.
+                        El uso de iWorker implica la aceptación de nuestros Términos y Condiciones,
+                        Política de Privacidad y Política de Cookies completas, disponibles en el sitio web oficial.
+                    </p>
 
-        <ul>
-            <li>
-                <strong>1. Plataforma de intermediación:</strong>
-                iWorker es una herramienta tecnológica que facilita visibilidad, contacto y publicación
-                entre Usuarios, Workers y Emprendedores. No presta servicios, no ejecuta trabajos,
-                no vende productos ni intermedia pagos.
-            </li>
+                    <ul>
+                        <li>
+                            <strong>1. Plataforma de intermediación:</strong>
+                            iWorker es una herramienta tecnológica que facilita visibilidad, contacto y publicación
+                            entre Usuarios, Workers y Emprendedores. No presta servicios, no ejecuta trabajos,
+                            no vende productos ni intermedia pagos.
+                        </li>
 
-            <li>
-                <strong>2. Independencia total:</strong>
-                No existe relación laboral, comercial ni societaria entre iWorker y los Workers o Emprendedores.
-                Cada parte fija libremente precios, condiciones y horarios, y asume sus propias obligaciones
-                legales, fiscales y previsionales.
-            </li>
+                        <li>
+                            <strong>2. Independencia total:</strong>
+                            No existe relación laboral, comercial ni societaria entre iWorker y los Workers o Emprendedores.
+                            Cada parte fija libremente precios, condiciones y horarios, y asume sus propias obligaciones
+                            legales, fiscales y previsionales.
+                        </li>
 
-            <li>
-                <strong>3. Responsabilidad y garantías:</strong>
-                iWorker no certifica identidades, capacidades ni resultados.
-                Las relaciones y acuerdos se realizan de forma privada entre las partes.
-                La plataforma se brinda “tal cual” (AS IS), sin garantías de funcionamiento continuo
-                ni resultados esperados.
-            </li>
+                        <li>
+                            <strong>3. Responsabilidad y garantías:</strong>
+                            iWorker no certifica identidades, capacidades ni resultados.
+                            Las relaciones y acuerdos se realizan de forma privada entre las partes.
+                            La plataforma se brinda “tal cual” (AS IS), sin garantías de funcionamiento continuo
+                            ni resultados esperados.
+                        </li>
 
-            <li>
-                <strong>4. Pagos y monetización:</strong>
-                Todos los acuerdos económicos se realizan fuera de la aplicación.
-                iWorker no cobra comisiones por trabajos ni ventas.
-                La plataforma se sostiene mediante publicidad, donaciones voluntarias,
-                sponsors y servicios de visibilidad opcionales.
-            </li>
+                        <li>
+                            <strong>4. Pagos y monetización:</strong>
+                            Todos los acuerdos económicos se realizan fuera de la aplicación.
+                            iWorker no cobra comisiones por trabajos ni ventas.
+                            La plataforma se sostiene mediante publicidad, donaciones voluntarias,
+                            sponsors y servicios de visibilidad opcionales.
+                        </li>
 
-            <li>
-                <strong>5. Edad mínima:</strong>
-                El uso de iWorker está permitido únicamente a personas mayores de 16 años.
-                El registro implica declarar información veraz y capacidad legal suficiente.
-            </li>
+                        <li>
+                            <strong>5. Edad mínima:</strong>
+                            El uso de iWorker está permitido únicamente a personas mayores de 16 años.
+                            El registro implica declarar información veraz y capacidad legal suficiente.
+                        </li>
 
-            <li>
-                <strong>6. Geolocalización y ordenamiento:</strong>
-                Las búsquedas y distancias son aproximadas y automáticas.
-                El orden de resultados no implica recomendación, validación ni garantía de contratación.
-            </li>
+                        <li>
+                            <strong>6. Geolocalización y ordenamiento:</strong>
+                            Las búsquedas y distancias son aproximadas y automáticas.
+                            El orden de resultados no implica recomendación, validación ni garantía de contratación.
+                        </li>
 
-            <li>
-                <strong>7. Seguridad y seguros:</strong>
-                Se recomienda a los Workers contar con Seguro de Accidentes Personales (AP).
-                iWorker no lo provee, controla ni asume responsabilidad por accidentes o daños.
-            </li>
+                        <li>
+                            <strong>7. Seguridad y seguros:</strong>
+                            Se recomienda a los Workers contar con Seguro de Accidentes Personales (AP).
+                            iWorker no lo provee, controla ni asume responsabilidad por accidentes o daños.
+                        </li>
 
-            <li>
-                <strong>8. Datos personales:</strong>
-                Los datos se tratan conforme a la Ley 25.326.
-                La base de datos está registrada y los usuarios pueden ejercer sus derechos
-                de acceso, rectificación y eliminación.
-            </li>
+                        <li>
+                            <strong>8. Datos personales:</strong>
+                            Los datos se tratan conforme a la Ley 25.326.
+                            La base de datos está registrada y los usuarios pueden ejercer sus derechos
+                            de acceso, rectificación y eliminación.
+                        </li>
 
-            <li>
-                <strong>9. Uso prohibido:</strong>
-                Está prohibido utilizar la plataforma para actividades ilegales,
-                contenido sexual, violencia, discriminación o venta de productos ilícitos.
-                Las infracciones pueden derivar en bloqueo permanente.
-            </li>
-        </ul>
+                        <li>
+                            <strong>9. Uso prohibido:</strong>
+                            Está prohibido utilizar la plataforma para actividades ilegales,
+                            contenido sexual, violencia, discriminación o venta de productos ilícitos.
+                            Las infracciones pueden derivar en bloqueo permanente.
+                        </li>
+                    </ul>
 
-        <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">
-            Última actualización: Enero 2026 · Comodoro Rivadavia, Argentina.
-            Jurisdicción exclusiva: Tribunales Ordinarios de la Provincia del Chubut.
-        </p>
-    `
-}
+                    <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">
+                        Última actualización: Enero 2026 · Comodoro Rivadavia, Argentina.
+                        Jurisdicción exclusiva: Tribunales Ordinarios de la Provincia del Chubut.
+                    </p>
+                `
+            }
         };
 
         const modalBackdrop = document.getElementById('modalBackdrop');
@@ -831,6 +862,16 @@
             if (force || event.target === modalBackdrop) {
                 modalBackdrop.classList.remove('active');
                 document.body.style.overflow = 'auto';
+            }
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            // Alternar clase 'active' para mostrar/ocultar
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            } else {
+                nav.classList.add('active');
             }
         }
     </script>
