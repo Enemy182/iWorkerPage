@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>iWorker - Re-Imagine Acceso Remoto</title>
+    <title>iWorker - Talento Local Sin Límites</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -10,7 +10,6 @@
     <style>
         /* --- CONFIGURACIÓN GENERAL --- */
         :root {
-            /* Tono naranja vibrante basado en la referencia */
             --brand-primary: #FF4500; 
             --brand-glow: rgba(255, 69, 0, 0.6);
             --bg-dark: #050505;
@@ -37,7 +36,7 @@
             padding: 14px 32px;
             font-weight: 700;
             font-size: 14px;
-            border-radius: 50px; /* Redondeado estilo moderno */
+            border-radius: 50px;
             text-transform: uppercase;
             cursor: pointer;
             display: inline-block;
@@ -50,7 +49,6 @@
             font-family: var(--font-body);
         }
 
-        /* Botón estilo "kkii.jpg" - Naranja intenso con degradado sutil */
         .btn-primary {
             background: linear-gradient(135deg, #ff5e00 0%, #ff3b00 100%);
             color: white;
@@ -61,16 +59,6 @@
             transform: translateY(-3px) scale(1.02); 
             box-shadow: 0 15px 35px -5px var(--brand-glow); 
             filter: brightness(1.1);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-        .btn-ghost:hover {
-            border-color: var(--brand-primary);
-            color: var(--brand-primary);
         }
 
         /* --- NAVBAR --- */
@@ -95,7 +83,6 @@
             color: white;
             text-decoration: none;
             letter-spacing: -1px;
-            /* Pequeño punto naranja al final si se desea */
         }
         .logo-text span { color: var(--brand-primary); }
         
@@ -113,7 +100,6 @@
             position: relative;
         }
 
-        /* Efecto hover moderno para links */
         .nav-links button::after {
             content: '';
             position: absolute;
@@ -150,12 +136,19 @@
             overflow: hidden;
         }
 
-        /* Texto Hero */
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         
+        /* Estilo para el Logo Grande en el Hero */
+        .hero-logo-img {
+            width: 140px; /* Tamaño grande y visible */
+            height: auto;
+            display: block;
+            margin-bottom: 25px;
+        }
+
         .hero h1 { 
             font-family: var(--font-head); 
-            font-size: 5rem; 
+            font-size: 4.5rem; 
             line-height: 0.95; 
             margin-bottom: 25px; 
             letter-spacing: -2px;
@@ -171,7 +164,6 @@
             font-weight: 300;
         }
 
-        /* Contenedor del Celular (Estilo 333331.jpg) */
         .hero-img-container {
             flex: 0.9;
             display: flex;
@@ -180,24 +172,23 @@
             z-index: 1;
         }
 
-        /* El celular oscuro flotante */
+        /* CELULAR CON BORDES VISIBLES */
         .phone-mockup {
             width: 320px;
             height: 650px;
             background: #000;
             border-radius: 45px;
             position: relative;
-            /* Sombra tipo resplandor naranja detrás */
-            box-shadow: 0 0 80px -10px rgba(255, 69, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Borde grueso estilo físico */
+            border: 14px solid #1a1a1a; 
+            box-shadow: 0 0 80px -10px rgba(255, 69, 0, 0.3), inset 0 0 20px rgba(0,0,0,0.5);
             overflow: hidden;
-            transform: rotate(-5deg); /* Ligera inclinación estética */
+            transform: rotate(-5deg);
             transition: transform 0.5s ease;
         }
         
         .phone-mockup:hover { transform: rotate(0deg) scale(1.02); }
 
-        /* Notch simulado sutil */
         .phone-notch {
             position: absolute;
             top: 0;
@@ -205,7 +196,7 @@
             transform: translateX(-50%);
             width: 40%;
             height: 25px;
-            background: #000;
+            background: #1a1a1a;
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
             z-index: 10;
@@ -217,10 +208,8 @@
             background-image: url('iworkerapp.webp');
             background-size: cover;
             background-position: top center;
-            opacity: 0.9; /* Un poco oscuro para que se funda */
         }
 
-        /* Círculo decorativo de fondo */
         .bg-glow {
             position: absolute;
             top: 50%;
@@ -250,7 +239,7 @@
 
         .profile-img {
             width: 320px; height: 320px;
-            border-radius: 50%; /* Círculo perfecto */
+            border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--brand-primary);
             box-shadow: 0 0 40px rgba(255, 69, 0, 0.15);
@@ -293,7 +282,6 @@
             gap: 30px;
         }
 
-        /* Links que envuelven las cards */
         .card-link {
             text-decoration: none;
             display: block;
@@ -356,7 +344,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px); /* Efecto vidrio borroso */
+            backdrop-filter: blur(8px);
             z-index: 2000;
             display: none;
             justify-content: center;
@@ -378,7 +366,6 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
 
-        /* Clases activas para JS */
         .modal-backdrop.active { display: flex; opacity: 1; }
         .modal-backdrop.active .modal-container { transform: scale(1); }
 
@@ -428,16 +415,16 @@
             .hero-text { padding-right: 0; margin-bottom: 60px; }
             .hero h1 { font-size: 3.5rem; }
             
+            /* Ajuste del logo en mobile para centrarlo */
+            .hero-logo-img { margin: 0 auto 25px auto; }
+            
             .phone-mockup { width: 260px; height: 520px; transform: rotate(0); }
             
             .profile-section { flex-direction: column; text-align: center; }
             .profile-img-wrapper { flex: auto; }
             .profile-img { width: 250px; height: 250px; margin: 0 auto; }
 
-            .nav-links { 
-                display: none; /* En producción usarías un menú hamburguesa con JS, por simplicidad aquí se ocultan los secundarios */
-            }
-            /* Mostrar solo el botón de descarga en mobile o un icono de menú */
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -461,8 +448,10 @@
     <header class="hero">
         <div class="bg-glow"></div>
         <div class="hero-text">
-            <h1>Re-Imagine <br><span>Acceso remoto</span></h1>
-            <p>Conectamos tu talento con soluciones eficientes desde cualquier lugar. La plataforma definitiva para el trabajo moderno en Argentina.</p>
+            <img src="logo.png" alt="iWorker Logo" class="hero-logo-img">
+
+            <h1>Talento Local <br><span>Sin Límites</span></h1>
+            <p>La plataforma argentina que conecta a trabajadores independientes, emprendedores y usuarios en una comunidad justa, directa y sin comisiones ocultas.</p>
             
             <a href="#" class="btn btn-primary">
                 Únete a la BETA abierta - Próximamente
@@ -544,7 +533,6 @@
     </footer>
 
     <script>
-        // Datos de contenido para los modales
         const contentData = {
             "mision": {
                 title: "🚀 Nuestra Misión",
@@ -583,6 +571,7 @@
                 text: `
                     <p>¿Tienes dudas, sugerencias o propuestas?</p>
                     <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
+                    <p><strong>Ubicación:</strong> Av. Fray Luís Beltrán 932, Comodoro Rivadavia.</p>
                 `
             },
             "faq": {
@@ -609,14 +598,13 @@
             modalBody.innerHTML = data.text;
             
             modalBackdrop.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evitar scroll
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(event, force = false) {
-            // Cerrar si se clickea el backdrop (fondo oscuro) o el botón de cerrar
             if (force || event.target === modalBackdrop) {
                 modalBackdrop.classList.remove('active');
-                document.body.style.overflow = 'auto'; // Restaurar scroll
+                document.body.style.overflow = 'auto';
             }
         }
     </script>
