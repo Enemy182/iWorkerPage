@@ -83,12 +83,10 @@
             flex: 1;
             position: relative;
             max-width: 50%;
-            /* El contenedor mantiene la perspectiva y rotación inicial */
             transform: perspective(1000px) rotateY(15deg) rotateX(5deg);
             transition: transform 0.5s;
         }
 
-        /* Al pasar el mouse, el contenedor vuelve a su posición original */
         .hero-img-container:hover {
             transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
         }
@@ -104,7 +102,6 @@
             z-index: 0;
         }
 
-        /* El mockup del teléfono */
         .hero-phone-mockup {
             width: 300px;
             height: 600px;
@@ -118,7 +115,6 @@
             margin: 0 auto;
         }
 
-        /* La pantalla dentro del teléfono */
         .hero-phone-screen {
             width: 100%;
             height: 100%;
@@ -126,7 +122,6 @@
             background-position: center;
         }
 
-        /* La muesca superior */
         .hero-phone-notch {
             position: absolute;
             top: 0;
@@ -212,7 +207,7 @@
             z-index: 2;
         }
 
-        /* --- CARDS INFERIORES (Estilo Actualizado) --- */
+        /* --- CARDS INFERIORES --- */
         .cards-section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -237,27 +232,28 @@
             cursor: pointer;
         }
 
-        /* Imagen de fondo */
         .image-card img {
             width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 1; /* Detrás del gradiente */
         }
 
-        /* Capa de gradiente superpuesta */
         .card-overlay-gradient {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             opacity: 0.85;
             transition: opacity 0.3s ease;
+            z-index: 2; /* "Sábana" sobre la imagen */
         }
 
-        /* Texto sobre la tarjeta */
         .card-content {
             position: absolute;
             bottom: 30px; left: 30px;
-            z-index: 2;
+            z-index: 3;
         }
 
         .card-title {
@@ -273,11 +269,9 @@
             font-size: 1.1rem;
         }
 
-        /* Efectos Hover */
-        .image-card:hover img { transform: scale(1.05); /* Zoom leve */ }
-        .image-card:hover .card-overlay-gradient { opacity: 0.95; /* Se oscurece más */ }
+        .image-card:hover img { transform: scale(1.05); }
+        .image-card:hover .card-overlay-gradient { opacity: 0.95; }
 
-        /* Colores de gradiente específicos para cada tarjeta */
         .card-user .card-overlay-gradient {
             background: linear-gradient(to bottom right, rgba(255, 59, 0, 0.4), rgba(255, 59, 0, 0.9));
         }
@@ -288,7 +282,6 @@
             background: linear-gradient(to bottom right, rgba(192, 72, 72, 0.4), rgba(72, 0, 72, 0.9));
         }
 
-        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 40px;
@@ -299,7 +292,6 @@
         }
         footer span { color: var(--brand-red); }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .hero { flex-direction: column-reverse; padding-top: 120px; text-align: center; }
             .hero-img-container { max-width: 100%; margin-bottom: 40px; transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
@@ -333,7 +325,7 @@
             <div class="hero-glow"></div>
             <div class="hero-phone-mockup">
                 <div class="hero-phone-notch"></div>
-                <div class="hero-phone-screen" style="background-image: url('iworkerapp.jpg');"></div>
+                <div class="hero-phone-screen" style="background-image: url('./iworkerapp.webp');"></div>
             </div>
         </div>
         
@@ -353,7 +345,7 @@
         </div>
         <div class="conoceme-img-container">
             <div class="big-number-glow"></div>
-            <img src="perfil.jpg" alt="Perfil Alejandro" class="profile-img" onerror="this.src='https://via.placeholder.com/300/333/fff?text=perfil.jpg'">
+            <img src="./perfil.webp" alt="Perfil Alejandro" class="profile-img">
         </div>
     </section>
 
@@ -361,7 +353,7 @@
 
     <section class="cards-container">
         <div class="image-card card-user">
-            <img src="iworkeruser.jpg" alt="Usuario" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#2c3e50';">
+            <img src="./iworkeruser.webp" alt="Usuario">
             <div class="card-overlay-gradient"></div>
             <div class="card-content">
                 <div class="card-title">Usuario</div>
@@ -370,7 +362,7 @@
         </div>
 
         <div class="image-card card-worker">
-            <img src="iworkerworker.jpg" alt="Worker" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#000000';">
+            <img src="./iworkerworker.webp" alt="Worker">
             <div class="card-overlay-gradient"></div>
             <div class="card-content">
                 <div class="card-title">Worker</div>
@@ -379,7 +371,7 @@
         </div>
 
         <div class="image-card card-entrepreneur">
-            <img src="iworkerentrepreneur.jpg" alt="Emprendedor" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#480048';">
+            <img src="./iworkerentrepreneur.webp" alt="Emprendedor">
             <div class="card-overlay-gradient"></div>
             <div class="card-content">
                 <div class="card-title">Emprendedor</div>
