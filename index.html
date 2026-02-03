@@ -5,7 +5,7 @@
     <title>iWorker - Talento Local Sin Límites</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* --- CONFIGURACIÓN GENERAL --- */
@@ -13,17 +13,12 @@
             --brand-primary: #FF4500; 
             --brand-glow: rgba(255, 69, 0, 0.6);
             --bg-dark: #050505;
-            --bg-card: #0a0a0a;
+            --bg-card: #121212;
             --text-main: #ffffff;
-            --text-muted: #b3b3b3;
+            --text-muted: #aaaaaa;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --font-head: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
-
-            /* Colores de Roles (Referencia xx.png) */
-            --role-user: #D32F2F; /* Tono rojizo/naranja */
-            --role-worker: #263238; /* Tono azul grisáceo oscuro */
-            --role-entrepreneur: #4A148C; /* Tono violeta profundo */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -66,13 +61,13 @@
             filter: brightness(1.1);
         }
 
-        /* --- NAVBAR (Alineación kkii.jpg) --- */
+        /* --- NAVBAR --- */
         nav {
             display: flex;
-            justify-content: space-between; /* Logo izquierda, Links derecha */
+            justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: rgba(5, 5, 5, 0.9);
+            background: rgba(5, 5, 5, 0.85);
             backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
@@ -83,120 +78,179 @@
 
         .logo-text {
             font-family: var(--font-head);
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
             color: white;
             text-decoration: none;
             letter-spacing: -1px;
         }
+        .logo-text span { color: var(--brand-primary); }
         
-        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         
         .nav-links button { 
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 13px; 
-            font-weight: 600; 
+            font-size: 14px; 
+            font-weight: 500; 
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             position: relative;
-            text-transform: uppercase;
         }
 
+        .nav-links button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--brand-primary);
+            transition: var(--transition);
+        }
         .nav-links button:hover { color: white; }
+        .nav-links button:hover::after { width: 100%; }
 
-        /* --- HERO SECTION --- */
+        .nav-cta {
+            background: var(--brand-primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        /* --- HERO SECTION REESTRUCTURADO --- */
         .hero {
-            padding: 160px 8% 100px 8%;
+            padding: 140px 8% 100px 8%; /* Ajuste de padding superior */
             min-height: 100vh;
-            background: radial-gradient(circle at 30% 40%, rgba(255, 69, 0, 0.06) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 30%, rgba(255, 69, 0, 0.08) 0%, transparent 70%);
             position: relative;
             overflow: hidden;
+            /* Cambio a layout de columna para centrar el logo arriba */
             display: flex;
-            flex-direction: column; 
-            align-items: center; /* Centrar contenido principal */
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Logo Hero Grande */
-        .hero-logo-container { margin-bottom: 40px; z-index: 2; }
-        .hero-logo-img { width: 200px; height: auto; display: block; filter: drop-shadow(0 0 20px rgba(255,69,0,0.1)); }
+        /* Nuevo contenedor para el logo central */
+        .hero-logo-container {
+            margin-bottom: 50px;
+            text-align: center;
+            z-index: 2;
+        }
 
+        /* Logo más grande y centrado */
+        .hero-logo-img {
+            width: 220px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 10px 20px rgba(255,69,0,0.2));
+        }
+
+        /* Contenedor flexible para texto y celular */
         .hero-content-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            max-width: 1300px;
+            max-width: 1200px;
         }
 
-        .hero-text { flex: 1; padding-right: 50px; z-index: 2; }
+        .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         
         .hero h1 { 
             font-family: var(--font-head); 
-            font-size: 4.2rem; 
-            line-height: 1; 
+            font-size: 4.5rem; 
+            line-height: 0.95; 
             margin-bottom: 25px; 
-            letter-spacing: -1.5px;
+            letter-spacing: -2px;
         }
-        .hero h1 span { color: var(--brand-primary); display: block; margin-top: 5px; }
+        
+        .hero h1 span { color: var(--brand-primary); display: block; }
         
         .hero p { 
             color: var(--text-muted); 
-            font-size: 1.15rem; 
+            font-size: 1.25rem; 
             margin-bottom: 40px; 
-            max-width: 550px; 
-            font-weight: 400;
-            line-height: 1.7;
+            max-width: 500px; 
+            font-weight: 300;
         }
 
+        /* --- BLOQUE DE CÓDIGO A REEMPLAZAR --- */
+
         .hero-img-container {
-            flex: 1;
+            flex: 0.9;
             display: flex;
             justify-content: center;
             position: relative;
             z-index: 1;
-            perspective: 1500px; /* Profundidad 3D */
+            /* Agrega profundidad real para el ángulo 3D */
+            perspective: 1000px; 
         }
 
-        /* --- CELULAR (Referencia 333331.jpg) --- */
+        /* CELULAR: Ángulo, borde y velocidad ajustados a la referencia */
         .phone-mockup {
-            width: 310px;
-            height: 640px;
-            background: #080808;
-            border-radius: 48px;
+            width: 300px;
+            height: 620px;
+            background: #000;
+            border-radius: 42px;
             position: relative;
-            /* Borde físico visible y oscuro */
-            border: 12px solid #141414;
-            /* Sombra suave trasera */
-            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);
+            /* Borde fino y oscuro, casi invisible como en la foto */
+            border: 4px solid #222; 
+            /* Glow trasero ajustado */
+            box-shadow: 0 20px 80px -10px rgba(255, 69, 0, 0.25);
             overflow: hidden;
             
-            /* ÁNGULO INICIAL: Rotado a la izquierda */
-            transform: rotateY(-25deg) rotateX(10deg);
+            /* ÁNGULO EXACTO: Rotación en eje Y para simular la imagen */
+            transform: rotateY(-25deg) rotateX(5deg);
             
-            /* Transición rápida solicitada */
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Transición rápida de 0.2s */
+            transition: transform 0.2s ease-out;
         }
         
-        /* HOVER: Se pone recto (vertical) al instante */
-        .phone-mockup:hover { transform: rotateY(0deg) rotateX(0deg); }
+        /* Al pasar el mouse se pone recto (vertical) al instante */
+        .phone-mockup:hover { 
+            transform: rotateY(0deg) rotateX(0deg); 
+        }
+
+        /* ------------------------------------- */
 
         .phone-notch {
             position: absolute;
-            top: 0; left: 50%; transform: translateX(-50%);
-            width: 45%; height: 28px;
-            background: #141414;
-            border-bottom-left-radius: 18px; border-bottom-right-radius: 18px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 25px;
+            background: #1a1a1a;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
             z-index: 10;
         }
 
         .phone-screen {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             background-image: url('iworkerapp.webp');
             background-size: cover;
             background-position: top center;
+        }
+
+        .bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,69,0,0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* --- PERFIL CREADOR --- */
@@ -209,205 +263,280 @@
             border-top: 1px solid rgba(255,255,255,0.03);
         }
 
-        .profile-img-wrapper { flex: 0 0 300px; }
+        .profile-img-wrapper {
+            flex: 0 0 320px;
+            position: relative;
+        }
+
         .profile-img {
-            width: 300px; height: 300px;
+            width: 320px; height: 320px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--brand-primary);
-            box-shadow: 0 0 50px rgba(255, 69, 0, 0.1);
+            border: 3px solid var(--brand-primary);
+            box-shadow: 0 0 40px rgba(255, 69, 0, 0.15);
+            transition: var(--transition);
         }
         
-        .profile-content h2 { font-family: var(--font-head); font-size: 2.5rem; margin-bottom: 10px; }
-        .profile-content h2 span { color: var(--brand-primary); }
-        .profile-role { color: var(--brand-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; margin-bottom: 20px; display: block; }
-        .profile-text p { margin-bottom: 15px; color: #ccc; line-height: 1.8; }
+        .profile-img:hover { transform: scale(1.05); filter: grayscale(0%); }
 
-        /* --- ECOSISTEMA (ESTILO XX.PNG) --- */
-        .ecosystem-section { padding: 80px 5% 120px; background: #050505; }
+        .profile-content { flex: 1; }
+        
+        .profile-content h2 { 
+            font-family: var(--font-head); 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+        }
+        .profile-content h2 span { color: var(--brand-primary); }
+        .profile-role { color: var(--brand-primary); font-weight: 600; margin-bottom: 20px; display: block; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;}
+
+        .profile-text {
+            color: #ccc;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .profile-text p { margin-bottom: 15px; }
+        
+        /* --- CARDS ECOSISTEMA (ESTILO CORTINA & MOBILE) --- */
+        .ecosystem-section { 
+            padding: 80px 5% 120px 5%; 
+            position: relative; 
+        }
         
         .section-title { 
             text-align: center; 
             font-size: 3rem; 
             margin-bottom: 60px; 
             font-family: var(--font-head); 
-            color: white;
         }
         .section-title span { color: var(--brand-primary); }
 
         .cards-grid {
             display: grid;
-            /* Responsive sin tamaños fijos */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            /* Adaptación móvil: se ajusta automáticamente, mínimo 300px por tarjeta */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
-        .card-link { text-decoration: none; display: block; }
+        .card-link {
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
 
         .role-card {
-            aspect-ratio: 4/5; /* Proporción vertical elegante */
+            /* Sin altura fija para mejor adaptación en celulares */
+            aspect-ratio: 4 / 5; 
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            background: #000; /* Fondo base negro */
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: var(--bg-card);
             border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
         }
 
-        .role-card:hover {
-            transform: translateY(-8px);
-            z-index: 2;
-        }
-
-        /* Imagen de fondo */
         .role-card img {
             width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
-            opacity: 0.6; /* Un poco oscurecida para que resalte el gradiente */
         }
-        
-        /* Zoom al hacer hover */
+
+        /* Efecto Zoom al pasar el mouse */
         .role-card:hover img { transform: scale(1.1); }
 
-        /* La "Cortina" de color (Gradient Overlay) */
-        .role-card::after {
-            content: '';
+        /* CORTINA DE COLOR (Overlay) */
+        .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, var(--card-color) 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
-            opacity: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            z-index: 2;
             transition: opacity 0.3s;
         }
 
-        /* Clases específicas de color según referencia xx.png */
-        .card-user { --card-color: var(--role-user); }
-        .card-worker { --card-color: var(--role-worker); }
-        .card-entrepreneur { --card-color: var(--role-entrepreneur); }
-
-        /* Contenido de la tarjeta */
-        .card-content {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 30px;
-            z-index: 5; /* Encima de la cortina */
+        /* Degradados específicos según la imagen xx.png */
+        .role-user .card-overlay {
+            /* Naranja intenso a transparente */
+            background: linear-gradient(to top, #cf3800 10%, rgba(207, 56, 0, 0.7) 40%, transparent 100%);
         }
 
-        .card-label {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 5px;
-            display: block;
+        .role-worker .card-overlay {
+            /* Azul oscuro/Grisáceo a transparente */
+            background: linear-gradient(to top, #111827 10%, rgba(17, 24, 39, 0.8) 40%, transparent 100%);
         }
 
-        .card-title {
-            font-family: var(--font-head);
-            font-size: 2.2rem;
+        .role-entrepreneur .card-overlay {
+            /* Violeta oscuro a transparente */
+            background: linear-gradient(to top, #2e003e 10%, rgba(46, 0, 62, 0.8) 40%, transparent 100%);
+        }
+
+        .card-title { 
+            color: white; 
+            font-size: 2.2rem; 
+            font-family: var(--font-head); 
             font-weight: 800;
-            color: white;
-            line-height: 1.1;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .card-desc { 
+            color: rgba(255,255,255,0.95); 
+            font-size: 1rem; 
+            font-weight: 500;
+            line-height: 1.4;
+            transform: translateY(0); /* Texto siempre visible como en xx.png */
         }
 
-        .card-desc {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.9);
-            line-height: 1.5;
-            max-width: 90%;
-        }
-
-        /* --- LINK LEGALES --- */
+        /* Link a TyC */
         .legal-link-container {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 60px;
         }
         .legal-link {
             color: var(--text-muted);
-            text-decoration: underline;
+            text-decoration: none;
             font-size: 0.9rem;
-            transition: color 0.3s;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
         }
-        .legal-link:hover { color: var(--brand-primary); }
+        .legal-link:hover {
+            color: var(--brand-primary);
+            border-color: var(--brand-primary);
+        }
+        .legal-btn-ghost {
+            background: transparent;
+            border: 1px solid #333;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .legal-btn-ghost:hover { border-color: var(--text-main); color: var(--text-main); }
 
-        /* --- MODAL --- */
+        /* Ajuste Mobile para que las tarjetas no sean gigantes */
+        @media (max-width: 600px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .role-card { aspect-ratio: 1 / 1.2; } /* Un poco más cuadradas en mobile */
+        }
+        
+        /* --- MODAL MODERNO --- */
+        
         .modal-backdrop {
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(8px);
             z-index: 2000;
             display: none;
             justify-content: center;
             align-items: center;
-            opacity: 0; transition: opacity 0.3s;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
+
         .modal-container {
-            background: #111;
-            border: 1px solid #333;
-            width: 90%; max-width: 650px;
-            border-radius: 16px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
             padding: 40px;
             position: relative;
-            transform: scale(0.95); transition: transform 0.3s;
-            max-height: 85vh; overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
+
         .modal-backdrop.active { display: flex; opacity: 1; }
         .modal-backdrop.active .modal-container { transform: scale(1); }
 
         .modal-close {
-            position: absolute; top: 20px; right: 20px;
-            background: transparent; border: none; color: white;
-            font-size: 24px; cursor: pointer;
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
         }
-        .modal-title { color: var(--brand-primary); font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 20px; }
+        .modal-close:hover { background: var(--brand-primary); }
+
+        .modal-title { 
+            color: var(--brand-primary); 
+            font-family: var(--font-head); 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+        }
+        
         .modal-body { color: #ddd; font-size: 1rem; line-height: 1.7; }
-        .modal-body strong { color: white; }
-        .modal-body ul { padding-left: 20px; margin-bottom: 15px; }
+        .modal-body ul { padding-left: 20px; }
+        .modal-body li { margin-bottom: 8px; }
 
         /* --- FOOTER --- */
         footer {
-            text-align: center; padding: 60px 20px;
-            border-top: 1px solid #222; color: #666; font-size: 0.9rem;
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
+        footer strong { color: white; }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 1000px) {
-            .nav-links { display: none; } /* Menú simplificado */
-            .hero { padding-top: 120px; }
-            .hero-content-wrapper { flex-direction: column; text-align: center; }
-            .hero-text { padding-right: 0; margin-bottom: 60px; }
-            .hero h1 { font-size: 3rem; }
+            /* Ajuste del wrapper de contenido en mobile */
+            .hero-content-wrapper {
+                flex-direction: column; 
+                text-align: center; 
+            }
             
-            .phone-mockup { width: 260px; height: 540px; }
+            .hero-text { padding-right: 0; margin-bottom: 60px; }
+            .hero h1 { font-size: 3.5rem; }
+            
+            .phone-mockup { width: 260px; height: 520px; }
             
             .profile-section { flex-direction: column; text-align: center; }
             .profile-img-wrapper { flex: auto; }
+            .profile-img { width: 250px; height: 250px; margin: 0 auto; }
+
+            .nav-links { display: none; }
             
-            .cards-grid { padding: 0 10px; }
+            /* Ajuste de tarjetas en mobile si es necesario */
+            .cards-grid { gap: 20px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo-text">iWorker</a>
+        <a href="#" class="logo-text">iWorker<span>.</span></a>
         
         <div class="nav-links">
-            <button onclick="openModal('quien')">Conóceme</button> <button onclick="openModal('mision')">Misión/Visión</button>
+            <button onclick="openModal('mision')">Misión</button>
+            <button onclick="openModal('vision')">Visión</button>
             <button onclick="openModal('donaciones')">Donaciones</button>
             <button onclick="openModal('sponsor')">Sponsors</button>
+            <button onclick="openModal('faq')">FAQ</button>
             <button onclick="openModal('contacto')">Contacto</button>
-            <button onclick="openModal('legal')">Legales</button> </div>
+        </div>
+
+        <a href="#" class="nav-cta" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
     </nav>
 
     <header class="hero">
+        <div class="bg-glow"></div>
+
         <div class="hero-logo-container">
             <img src="logo.png" alt="iWorker Logo" class="hero-logo-img">
         </div>
-
+        
         <div class="hero-content-wrapper">
             <div class="hero-text">
                 <h1>Talento Local <br><span>Sin Límites</span></h1>
@@ -434,9 +563,13 @@
         <div class="profile-content">
             <h2>Alejandro <span>Simos</span></h2>
             <span class="profile-role">Fundador & Desarrollador</span>
+            
             <div class="profile-text">
-                <p>Analista en Infraestructura IT y Desarrollador. iWorker nace de la convicción de que la tecnología debe ser un puente, no una barrera. Busco visibilizar el talento real de Comodoro Rivadavia y Argentina.</p>
-                <p>Sin intermediarios, sin comisiones ocultas. Solo conexión directa.</p>
+                <p>Hola, soy Alejandro. Actualmente me desempeño como administrador de redes informáticas en la Municipalidad de Comodoro Rivadavia, gestionando infraestructura crítica con tecnología HUAWEI.</p>
+                
+                <p>La programación comenzó como un hobby personal, pero rápidamente evolucionó hasta convertirse en <strong>iWorker</strong>. Este proyecto nace de una necesidad real que observé: visibilizar el inmenso talento de los trabajadores independientes y pequeños emprendedores que muchas veces quedan fuera de las grandes estructuras corporativas.</p>
+                
+                <p>Como ex-estudiante de Ingeniería de la UNPSJB, enfoco mi conocimiento técnico en crear herramientas que no sean barreras, sino puentes para reducir la brecha digital en nuestra región.</p>
             </div>
         </div>
     </section>
@@ -446,10 +579,9 @@
         
         <div class="cards-grid">
             <a href="user.html" class="card-link">
-                <div class="role-card card-user">
+                <div class="role-card role-user">
                     <img src="iworkeruser.webp" alt="Usuario">
-                    <div class="card-content">
-                        <span class="card-label">Para todos</span>
+                    <div class="card-overlay">
                         <div class="card-title">Usuario</div>
                         <div class="card-desc">Encuentra al profesional ideal para tu hogar u oficina en segundos.</div>
                     </div>
@@ -457,10 +589,9 @@
             </a>
 
             <a href="worker.html" class="card-link">
-                <div class="role-card card-worker">
-                    <img src="iworkerworker.png" alt="Worker">
-                    <div class="card-content">
-                        <span class="card-label">Independientes</span>
+                <div class="role-card role-worker">
+                    <img src="iworkerworker.webp" alt="Worker">
+                    <div class="card-overlay">
                         <div class="card-title">Worker</div>
                         <div class="card-desc">Digitaliza tu oficio, gestiona tus clientes y aumenta tus ingresos.</div>
                     </div>
@@ -468,10 +599,9 @@
             </a>
 
             <a href="entrepreneur.html" class="card-link">
-                <div class="role-card card-entrepreneur">
-                    <img src="iworkerentrepreneur.png" alt="Emprendedor">
-                    <div class="card-content">
-                        <span class="card-label">Negocios</span>
+                <div class="role-card role-entrepreneur">
+                    <img src="iworkerentrepreneur.webp" alt="Emprendedor">
+                    <div class="card-overlay">
                         <div class="card-title">Emprendedor</div>
                         <div class="card-desc">Tu vitrina digital disponible 24/7 para mostrar tus productos.</div>
                     </div>
@@ -480,57 +610,89 @@
         </div>
 
         <div class="legal-link-container">
-            <a href="terminos.html" class="legal-link">Leer Términos y Condiciones completos</a>
+            <a href="terminos.html" class="legal-link">Ver Términos y Condiciones completos</a>
+            <button onclick="openModal('legales')" class="legal-btn-ghost">Ver Resumen Legal</button>
         </div>
     </section>
 
     <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal(event)">
         <div class="modal-container">
             <button class="modal-close" onclick="closeModal(null, true)">&times;</button>
-            <h2 id="modalTitle" class="modal-title"></h2>
-            <div id="modalBody" class="modal-body"></div>
+            <h2 id="modalTitle" class="modal-title">Título</h2>
+            <div id="modalBody" class="modal-body">Contenido...</div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 <strong>iWorker</strong>. Tecnología social.</p>
+        <p>&copy; 2026 <strong>iWorker</strong>. Tecnología social para el crecimiento local.</p>
     </footer>
 
     <script>
         const contentData = {
-            "legal": {
-                title: "⚖️ Resumen Legal",
+            "mision": {
+                title: "🚀 Nuestra Misión",
                 text: `
-                    <p>Bienvenido a iWorker. Antes de unirte, estos son los puntos clave que debes conocer sobre cómo funcionamos:</p>
+                    <p>Conectar de forma simple, directa y transparente a personas con necesidades reales con trabajadores dispuestos a resolverlas.</p>
                     <ul>
-                        <li><strong>Somos un Puente Tecnológico:</strong> iWorker no contrata, no supervisa ni garantiza los trabajos. Solo conectamos partes.</li>
-                        <li><strong>Independencia Total:</strong> No existe relación laboral entre iWorker y los Workers/Emprendedores. Cada uno fija sus precios y reglas.</li>
-                        <li><strong>Gratuidad y Monetización:</strong> No cobramos comisiones por trabajo. Nos sostenemos con publicidad, sponsors y donaciones.</li>
-                        <li><strong>Seguridad y Edad:</strong> Debes ser mayor de 16 años. Recomendamos a los Workers tener seguro (AP).</li>
-                        <li><strong>Privacidad:</strong> Tus datos están protegidos bajo la Ley N.º 25.326 y registrados en la AAIP. Solo se usan para el funcionamiento de la app.</li>
+                        <li><strong>Conexión Directa:</strong> Eliminamos intermediarios innecesarios.</li>
+                        <li><strong>Visibilidad Real:</strong> Damos exposición al trabajo local genuino.</li>
+                        <li><strong>Respeto:</strong> Fomentamos modelos justos sin condiciones abusivas.</li>
                     </ul>
-                    <p style="font-size: 0.9em; margin-top: 20px; opacity: 0.8;">Jurisdicción: Comodoro Rivadavia, Chubut. Para detalles completos, visita la sección de Términos y Condiciones.</p>
                 `
             },
-            "quien": {
-                title: "👤 Sobre Mí",
-                text: "<p>Soy Alejandro Simos. Trabajo en infraestructura IT y desarrollé iWorker para reducir la brecha digital en nuestra región.</p>"
-            },
-            "mision": {
-                title: "🚀 Misión y Visión",
-                text: "<p><strong>Misión:</strong> Conectar sin intermediarios. <br><strong>Visión:</strong> Ser la referencia del trabajo independiente en la Patagonia.</p>"
+            "vision": {
+                title: "🌱 Nuestra Visión",
+                text: `
+                    <p>Convertirse en la plataforma de referencia regional para el trabajo independiente en la Patagonia y Argentina.</p>
+                    <p>Queremos demostrar que la tecnología puede ser socialmente responsable, ayudando a consolidar una comunidad basada en la confianza mutua y expandirnos gradualmente a nuevas ciudades.</p>
+                `
             },
             "donaciones": {
-                title: "❤️ Donaciones",
-                text: "<p>Tu aporte voluntario mantiene los servidores y la seguridad de la plataforma. iWorker es y será gratuito gracias a la comunidad.</p>"
+                title: "❤️ Apoya el Proyecto",
+                text: `
+                    <p>iWorker es una herramienta gratuita. No cobramos comisiones por los trabajos realizados.</p>
+                    <p>Las donaciones son 100% voluntarias y se destinan exclusivamente a mantener los servidores activos, mejorar la seguridad de los datos y desarrollar nuevas funcionalidades para la comunidad.</p>
+                `
             },
             "sponsor": {
-                title: "✨ Sponsors",
-                text: "<p>Espacio para empresas que apoyan el desarrollo local. Gana visibilidad en una comunidad activa.</p>"
+                title: "✨ Sé un Sponsor",
+                text: `
+                    <p>Estamos buscando empresas y organizaciones que compartan nuestra visión de desarrollo local e inclusión laboral.</p>
+                    <p>Convertirse en sponsor ofrece visibilidad destacada dentro de una comunidad activa y demuestra compromiso con el crecimiento económico de la región.</p>
+                `
             },
             "contacto": {
-                title: "✉️ Contacto",
-                text: "<p>Email: enemydev.iworker@gmail.com<br>Ubicación: Comodoro Rivadavia.</p>"
+                title: "✉️ Contáctanos",
+                text: `
+                    <p>¿Tienes dudas, sugerencias o propuestas?</p>
+                    <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
+                    <p><strong>Ubicación:</strong> Av. Fray Luís Beltrán 932, Comodoro Rivadavia.</p>
+                `
+            },
+            "faq": {
+                title: "❓ Preguntas Frecuentes",
+                text: `
+                    <ul>
+                        <li><strong>¿Es gratuito?</strong> Sí, el registro y uso básico no tienen costo para nadie.</li>
+                        <li><strong>¿Garantizan el trabajo?</strong> No, somos el puente de conexión. El acuerdo final es privado entre las partes.</li>
+                        <li><strong>¿Cómo me registro?</strong> Muy pronto abriremos la Beta pública. Mantente atento al botón de descarga.</li>
+                    </ul>
+                `
+            }
+            "legales": {
+                title: "⚖️ Resumen Legal iWorker",
+                text: `
+                    <p>Este es un resumen de los puntos clave. Para el texto completo, visita nuestros Términos y Condiciones.</p>
+                    <ul>
+                        <li><strong>1. Intermediación Pura:</strong> iWorker es un puente tecnológico. No prestamos servicios, no ejecutamos trabajos ni vendemos productos directamente.</li>
+                        <li><strong>2. Independencia Total:</strong> No existe relación laboral. Los Workers y Emprendedores son autónomos, fijan sus precios y horarios, y son responsables de sus obligaciones fiscales y legales.</li>
+                        <li><strong>3. Responsabilidad:</strong> iWorker no certifica identidades ni garantiza resultados. La contratación es un acuerdo privado entre las partes.</li>
+                        <li><strong>4. Edad Mínima:</strong> Plataforma exclusiva para mayores de 16 años.</li>
+                        <li><strong>5. Uso Gratuito:</strong> El uso básico es gratuito. iWorker se sostiene mediante publicidad, donaciones y sponsors, sin comisiones ocultas por intermediación de pagos.</li>
+                        <li><strong>6. Seguridad:</strong> Recomendamos a los Workers contar con Seguro de Accidentes Personales (AP), aunque iWorker no lo provee ni fiscaliza.</li>
+                    </ul>
+                    <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">Última actualización: Enero 2026 - Comodoro Rivadavia, Argentina.</p>
+                `
             }
         };
 
