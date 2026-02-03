@@ -124,28 +124,45 @@
             box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION REESTRUCTURADO --- */
         .hero {
-            padding: 180px 8% 120px 8%;
+            padding: 140px 8% 100px 8%; /* Ajuste de padding superior */
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 69, 0, 0.08) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+            /* Cambio a layout de columna para centrar el logo arriba */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Nuevo contenedor para el logo central */
+        .hero-logo-container {
+            margin-bottom: 50px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* Logo más grande y centrado */
+        .hero-logo-img {
+            width: 220px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 10px 20px rgba(255,69,0,0.2));
+        }
+
+        /* Contenedor flexible para texto y celular */
+        .hero-content-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 100vh;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 69, 0, 0.05) 0%, transparent 60%);
-            position: relative;
-            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         
-        /* Estilo para el Logo Grande en el Hero */
-        .hero-logo-img {
-            width: 140px; /* Tamaño grande y visible */
-            height: auto;
-            display: block;
-            margin-bottom: 25px;
-        }
-
         .hero h1 { 
             font-family: var(--font-head); 
             font-size: 4.5rem; 
@@ -172,22 +189,22 @@
             z-index: 1;
         }
 
-        /* CELULAR CON BORDES VISIBLES */
+        /* CELULAR - ÁNGULO CORREGIDO */
         .phone-mockup {
             width: 320px;
             height: 650px;
             background: #000;
             border-radius: 45px;
             position: relative;
-            /* Borde grueso estilo físico */
             border: 14px solid #1a1a1a; 
-            box-shadow: 0 0 80px -10px rgba(255, 69, 0, 0.3), inset 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 80px -10px rgba(255, 69, 0, 0.3), inset 0 0 20px rgba(0,0,0,0.5);
             overflow: hidden;
-            transform: rotate(+5deg);
-            transition: transform 0.3s ease;
+            /* VALOR DEL ÁNGULO: Cambiar '0deg' si se desea otra rotación */
+            transform: rotate(0deg); 
+            transition: transform 0.5s ease;
         }
         
-        .phone-mockup:hover { transform: rotate(0deg) scale(1.02); }
+        .phone-mockup:hover { transform: scale(1.02); } /* Solo escala al pasar el mouse, sin rotar */
 
         .phone-notch {
             position: absolute;
@@ -213,11 +230,11 @@
         .bg-glow {
             position: absolute;
             top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,69,0,0.1) 0%, transparent 70%);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,69,0,0.08) 0%, transparent 70%);
             z-index: 0;
             pointer-events: none;
         }
@@ -265,7 +282,7 @@
         }
         .profile-text p { margin-bottom: 15px; }
         
-        /* --- CARDS ECOSISTEMA --- */
+        /* --- CARDS ECOSISTEMA (ADAPTADAS) --- */
         .ecosystem-section { padding: 100px 5%; position: relative; }
         
         .section-title { 
@@ -278,7 +295,8 @@
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Grid responsive mejorado */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -288,7 +306,8 @@
         }
 
         .role-card {
-            height: 500px;
+            /* Altura fija eliminada. Se usa aspect-ratio para mejor adaptación móvil */
+            aspect-ratio: 4 / 5; 
             position: relative;
             border-radius: 20px;
             overflow: hidden;
@@ -305,7 +324,7 @@
 
         .role-card img {
             width: 100%; height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
             transition: transform 0.7s ease;
         }
         
@@ -406,25 +425,25 @@
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 1000px) {
-            .hero { 
+            /* Ajuste del wrapper de contenido en mobile */
+            .hero-content-wrapper {
                 flex-direction: column; 
                 text-align: center; 
-                padding-top: 140px; 
             }
             
             .hero-text { padding-right: 0; margin-bottom: 60px; }
             .hero h1 { font-size: 3.5rem; }
             
-            /* Ajuste del logo en mobile para centrarlo */
-            .hero-logo-img { margin: 0 auto 25px auto; }
-            
-            .phone-mockup { width: 260px; height: 520px; transform: rotate(0); }
+            .phone-mockup { width: 260px; height: 520px; }
             
             .profile-section { flex-direction: column; text-align: center; }
             .profile-img-wrapper { flex: auto; }
             .profile-img { width: 250px; height: 250px; margin: 0 auto; }
 
             .nav-links { display: none; }
+            
+            /* Ajuste de tarjetas en mobile si es necesario */
+            .cards-grid { gap: 20px; }
         }
     </style>
 </head>
@@ -447,21 +466,26 @@
 
     <header class="hero">
         <div class="bg-glow"></div>
-        <div class="hero-text">
+
+        <div class="hero-logo-container">
             <img src="logo.png" alt="iWorker Logo" class="hero-logo-img">
-
-            <h1>Talento Local <br><span>Sin Límites</span></h1>
-            <p>La plataforma argentina que conecta a trabajadores independientes, emprendedores y usuarios en una comunidad justa, directa y sin comisiones ocultas.</p>
-            
-            <a href="#" class="btn btn-primary">
-                Únete a la BETA abierta - Próximamente
-            </a>
         </div>
+        
+        <div class="hero-content-wrapper">
+            <div class="hero-text">
+                <h1>Talento Local <br><span>Sin Límites</span></h1>
+                <p>La plataforma argentina que conecta a trabajadores independientes, emprendedores y usuarios en una comunidad justa, directa y sin comisiones ocultas.</p>
+                
+                <a href="#" class="btn btn-primary">
+                    Únete a la BETA abierta - Próximamente
+                </a>
+            </div>
 
-        <div class="hero-img-container">
-            <div class="phone-mockup">
-                <div class="phone-notch"></div>
-                <div class="phone-screen"></div>
+            <div class="hero-img-container">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -571,6 +595,7 @@
                 text: `
                     <p>¿Tienes dudas, sugerencias o propuestas?</p>
                     <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
+                    <p><strong>Ubicación:</strong> Av. Fray Luís Beltrán 932, Comodoro Rivadavia.</p>
                 `
             },
             "faq": {
