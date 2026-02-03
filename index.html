@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CONFIGURACIÓN GENERAL --- */
         :root {
             --brand-red: #ff3b00;
             --bg-dark: #0b0b0b;
@@ -24,6 +25,27 @@
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- BOTONES --- */
+        .btn {
+            padding: 12px 28px;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-red);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 59, 0, 0.3);
+        }
+        
+        .btn-primary:hover { background-color: #e63500; transform: translateY(-2px); }
 
         /* --- NAVBAR --- */
         nav {
@@ -40,137 +62,251 @@
         }
 
         .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+        
         .nav-links { display: flex; gap: 20px; }
-        .nav-links a { font-size: 13px; font-weight: 600; }
+        .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-main); }
         .nav-links a:hover { color: var(--brand-red); }
 
-        .btn {
-            padding: 12px 28px;
-            font-weight: 700;
-            font-size: 14px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: inline-block;
-            background-color: var(--brand-red);
-            color: white;
-            border: none;
-        }
+        .nav-actions { display: flex; gap: 15px; }
 
-        /* --- HERO --- */
+        /* --- HERO SECTION --- */
         .hero {
             padding: 160px 5% 100px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             min-height: 85vh;
+            background: radial-gradient(circle at 70% 20%, rgba(255, 59, 0, 0.08) 0%, transparent 50%);
         }
 
         .hero-img-container {
             flex: 1;
             position: relative;
+            max-width: 50%;
+            /* El contenedor mantiene la perspectiva y rotación inicial */
             transform: perspective(1000px) rotateY(15deg) rotateX(5deg);
             transition: transform 0.5s;
         }
-        .hero-img-container:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
 
-        .hero-phone-mockup {
-            width: 280px;
-            height: 580px;
-            background: #1a1a1a;
-            border-radius: 35px;
-            border: 8px solid #333;
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        /* Al pasar el mouse, el contenedor vuelve a su posición original */
+        .hero-img-container:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
         }
 
+        .hero-glow {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; height: 80%;
+            background: var(--brand-red);
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        /* El mockup del teléfono */
+        .hero-phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            border: 3px solid #333;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin: 0 auto;
+        }
+
+        /* La pantalla dentro del teléfono */
         .hero-phone-screen {
             width: 100%;
             height: 100%;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
         }
 
-        .hero-text { flex: 1; padding-left: 60px; }
-        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-        .hero h1 span { color: var(--brand-red); }
-        .hero p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; max-width: 500px; }
+        /* La muesca superior */
+        .hero-phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #0b0b0b;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 2;
+        }
 
-        /* --- CONÓCEME --- */
+        .hero-text {
+            flex: 1;
+            padding-left: 60px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--brand-red); }
+        
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        /* --- SECCIÓN CONÓCEME --- */
         .conoceme-section {
             padding: 80px 5%;
             background: #0f0f0f;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid #222;
         }
 
-        .conoceme-text { flex: 1; }
-        .conoceme-text h2 { font-size: 3rem; font-family: 'Montserrat', sans-serif; margin-bottom: 15px; }
+        .geo-line {
+            position: absolute;
+            width: 200px; height: 200px;
+            border: 1px solid rgba(255, 59, 0, 0.3);
+            transform: rotate(45deg);
+            top: -50px; left: -50px;
+        }
+
+        .conoceme-text { flex: 1; padding-right: 50px; z-index: 2; }
+        .conoceme-text h2 { font-size: 3rem; font-family: 'Montserrat', sans-serif; margin-bottom: 15px; line-height: 1; }
         .conoceme-text h2 span { color: var(--brand-red); }
+        .conoceme-text p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; }
+
+        .conoceme-img-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .big-number-glow {
+            position: absolute;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--brand-red) 0%, transparent 70%);
+            opacity: 0.15;
+            z-index: 1;
+        }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 250px; height: 250px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
         }
 
-        /* --- CARDS --- */
-        .cards-section-title { text-align: center; font-size: 2.5rem; margin: 60px 0 30px; }
+        /* --- CARDS INFERIORES (Estilo Actualizado) --- */
+        .cards-section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+        }
         .cards-section-title span { color: var(--brand-red); }
 
         .cards-container {
-            padding: 0 5% 80px 5%;
+            padding: 40px 5% 80px 5%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 25px;
+            background: var(--bg-dark);
         }
 
         .image-card {
             height: 400px;
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            background: #111;
+            border-radius: 8px;
+            cursor: pointer;
         }
 
+        /* Imagen de fondo */
         .image-card img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
-            transition: 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
+        /* Capa de gradiente superpuesta */
         .card-overlay-gradient {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.75;
-            transition: 0.3s;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
         }
 
-        /* Colores de las capas */
-        .card-user .card-overlay-gradient { background: linear-gradient(to bottom, transparent, #ff3b00); }
-        .card-worker .card-overlay-gradient { background: linear-gradient(to bottom, transparent, #2c3e50); }
-        .card-entrepreneur .card-overlay-gradient { background: linear-gradient(to bottom, transparent, #480048); }
+        /* Texto sobre la tarjeta */
+        .card-content {
+            position: absolute;
+            bottom: 30px; left: 30px;
+            z-index: 2;
+        }
 
-        .image-card:hover img { transform: scale(1.1); }
-        .image-card:hover .card-overlay-gradient { opacity: 0.9; }
+        .card-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            margin-bottom: 5px;
+        }
 
-        .card-content { position: absolute; bottom: 25px; left: 25px; z-index: 5; }
-        .card-title { font-size: 1.8rem; font-weight: 700; color: #fff; }
+        .card-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+        }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid #222; }
+        /* Efectos Hover */
+        .image-card:hover img { transform: scale(1.05); /* Zoom leve */ }
+        .image-card:hover .card-overlay-gradient { opacity: 0.95; /* Se oscurece más */ }
+
+        /* Colores de gradiente específicos para cada tarjeta */
+        .card-user .card-overlay-gradient {
+            background: linear-gradient(to bottom right, rgba(255, 59, 0, 0.4), rgba(255, 59, 0, 0.9));
+        }
+        .card-worker .card-overlay-gradient {
+            background: linear-gradient(to bottom right, rgba(44, 62, 80, 0.4), rgba(44, 62, 80, 0.9));
+        }
+        .card-entrepreneur .card-overlay-gradient {
+            background: linear-gradient(to bottom right, rgba(192, 72, 72, 0.4), rgba(72, 0, 72, 0.9));
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            border-top: 1px solid #222;
+        }
         footer span { color: var(--brand-red); }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            .hero { flex-direction: column-reverse; text-align: center; }
-            .hero-text { padding-left: 0; margin-bottom: 40px; }
+            .hero { flex-direction: column-reverse; padding-top: 120px; text-align: center; }
+            .hero-img-container { max-width: 100%; margin-bottom: 40px; transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
+            .hero-text { padding-left: 0; }
+            .nav-links { display: none; }
+            .conoceme-section { flex-direction: column; text-align: center; }
+            .conoceme-text { padding-right: 0; margin-bottom: 40px; }
             .cards-container { grid-template-columns: 1fr; }
         }
     </style>
@@ -185,32 +321,39 @@
             <a href="#">Donaciones</a>
             <a href="#">Sponsors</a>
             <a href="#">Contacto</a>
+            <a href="#">Preguntas Frecuentes</a>
         </div>
-        <a href="#" class="btn">Descárgalo Ahora</a>
+        <div class="nav-actions">
+            <a href="#" class="btn btn-primary">Descárgalo Ahora</a>
+        </div>
     </nav>
 
     <header class="hero">
         <div class="hero-img-container">
+            <div class="hero-glow"></div>
             <div class="hero-phone-mockup">
-                <div class="hero-phone-screen" style="background-image: url('iworkerapp.png');"></div>
+                <div class="hero-phone-notch"></div>
+                <div class="hero-phone-screen" style="background-image: url('iworkerapp.jpg');"></div>
             </div>
         </div>
+        
         <div class="hero-text">
             <h1>Re-Imagine <br><span>Acceso remoto</span></h1>
-            <p>Te conectamos desde donde estás con donde tienes que estar.</p>
-            <a href="#" class="btn">Descárgalo Ahora</a>
+            <p>Te conectamos desde donde estás con donde tienes que estar. La plataforma definitiva.</p>
+            <a href="#" class="btn btn-primary">Descárgalo Ahora</a>
         </div>
     </header>
 
     <section class="conoceme-section">
+        <div class="geo-line"></div>
         <div class="conoceme-text">
             <h2>Consulta las <br><span>novedades</span></h2>
-            <p>Soy Alejandro Simos. Mira mi perfil y novedades.</p>
-            <br>
-            <a href="#" class="btn">Descubra Más</a>
+            <p>Soy Alejandro Simos. Logra un soporte remoto más rápido y conecta con las oportunidades laborales que mereces. Mira mi perfil.</p>
+            <a href="#" class="btn btn-primary">Descubra Más</a>
         </div>
         <div class="conoceme-img-container">
-            <img src="perfil.png" alt="Perfil" class="profile-img">
+            <div class="big-number-glow"></div>
+            <img src="perfil.jpg" alt="Perfil Alejandro" class="profile-img" onerror="this.src='https://via.placeholder.com/300/333/fff?text=perfil.jpg'">
         </div>
     </section>
 
@@ -218,26 +361,29 @@
 
     <section class="cards-container">
         <div class="image-card card-user">
-            <img src="iworkeruser.png" alt="Usuario">
+            <img src="iworkeruser.jpg" alt="Usuario" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#2c3e50';">
             <div class="card-overlay-gradient"></div>
             <div class="card-content">
                 <div class="card-title">Usuario</div>
+                <div class="card-subtitle">Encuentra servicios y productos fácilmente.</div>
             </div>
         </div>
 
         <div class="image-card card-worker">
-            <img src="iworkerworker.png" alt="Worker">
+            <img src="iworkerworker.jpg" alt="Worker" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#000000';">
             <div class="card-overlay-gradient"></div>
             <div class="card-content">
                 <div class="card-title">Worker</div>
+                <div class="card-subtitle">Ofrece tus servicios y aumenta tus clientes.</div>
             </div>
         </div>
 
         <div class="image-card card-entrepreneur">
-            <img src="iworkerentrepreneur.png" alt="Emprendedor">
+            <img src="iworkerentrepreneur.jpg" alt="Emprendedor" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#480048';">
             <div class="card-overlay-gradient"></div>
             <div class="card-content">
                 <div class="card-title">Emprendedor</div>
+                <div class="card-subtitle">Publica tu vitrina de productos al mundo.</div>
             </div>
         </div>
     </section>
