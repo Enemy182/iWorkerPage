@@ -324,8 +324,8 @@
         }
 
         .role-card {
-            /* Sin altura fija para mejor adaptación en celulares */
-            aspect-ratio: 4 / 5; 
+            /* CAMBIO: De 4/5 a 1/1 para que sean cuadradas */
+            aspect-ratio: 1 / 1; 
             position: relative;
             border-radius: 12px;
             overflow: hidden;
@@ -420,7 +420,8 @@
         /* Ajuste Mobile para que las tarjetas no sean gigantes */
         @media (max-width: 600px) {
             .cards-grid { grid-template-columns: 1fr; }
-            .role-card { aspect-ratio: 1 / 1.2; } /* Un poco más cuadradas en mobile */
+            /* En celular mantenemos una proporción ligera rectangular para que entre bien el texto */
+            .role-card { aspect-ratio: 1 / 1.1; } 
         }
         
         /* --- MODAL MODERNO --- */
@@ -533,10 +534,6 @@
     <header class="hero">
         <div class="bg-glow"></div>
 
-        <div class="hero-logo-container">
-            <img src="logo.png" alt="iWorker Logo" class="hero-logo-img">
-        </div>
-        
         <div class="hero-content-wrapper">
             <div class="hero-text">
                 <h1>Talento Local <br><span>Sin Límites</span></h1>
@@ -706,8 +703,6 @@
                 text: `
 
                     <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
-
-                    <p>Ubicación: Av. Fray Luís Beltrán 932, Comodoro Rivadavia.</p>
 
                 `
 
