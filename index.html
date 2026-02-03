@@ -2,262 +2,245 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>iWorker - Conectando Talento Local</title>
+    <title>iWorker - Únete a la Beta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CONFIGURACIÓN GENERAL --- */
         :root {
             --brand-red: #ff3b00;
-            --bg-dark: #0b0b0b;
-            --bg-card: #161616;
+            --bg-dark: #070707;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --text-main: #ffffff;
-            --text-muted: #b0b0b0;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --text-muted: #a0a0a0;
+            --accent-glow: rgba(255, 59, 0, 0.3);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- BOTONES --- */
-        .btn {
-            padding: 12px 28px;
-            font-weight: 700;
-            font-size: 14px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: inline-block;
-            transition: var(--transition);
-            border: none;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background-color: var(--brand-red);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 59, 0, 0.3);
-        }
-        
-        .btn-primary:hover { background-color: #e63500; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 59, 0, 0.4); }
-
-        /* --- NAVBAR --- */
+        /* --- NAVBAR MODERNA --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 4%;
-            background: rgba(11, 11, 11, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 20px 6%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(7, 7, 7, 0.8);
         }
 
-        .logo-container img {
-            height: 40px;
-            display: block;
+        .nav-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            background: linear-gradient(to right, #fff, var(--brand-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links button { 
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 13px; 
-            font-weight: 600; 
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links button {
+            background: none; border: none;
+            color: var(--text-muted);
+            font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; transition: 0.4s;
+            position: relative;
+        }
+
+        .nav-links button::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--brand-red);
+            transition: 0.4s;
+        }
+
+        .nav-links button:hover { color: #fff; }
+        .nav-links button:hover::after { width: 100%; }
+
+        /* --- BOTONES --- */
+        .btn-beta {
+            background: var(--brand-red);
+            color: #fff; border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: 0.4s;
         }
-        .nav-links button:hover { color: var(--brand-red); }
 
-        /* --- HERO SECTION --- */
+        .btn-beta:hover { transform: scale(1.05); box-shadow: 0 0 35px var(--brand-red); }
+
+        /* --- HERO: ESTILO ORIGINAL RECUPERADO --- */
         .hero {
-            padding: 160px 5% 100px 5%;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 90vh;
-            background: radial-gradient(circle at 70% 20%, rgba(255, 59, 0, 0.08) 0%, transparent 50%);
+            padding: 0 8%;
+            background: radial-gradient(circle at 20% 50%, #1a0a05 0%, transparent 40%);
         }
 
-        .hero-img-container {
-            flex: 1;
+        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem; line-height: 0.9;
+            margin-bottom: 25px;
+        }
+        .hero-content h1 span { color: var(--brand-red); display: block; }
+        
+        .hero-content p {
+            font-size: 1.25rem; color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Mockup Teléfono (Tu diseño anterior) */
+        .hero-visual {
+            flex: 1; display: flex; justify-content: flex-end;
             position: relative;
-            max-width: 50%;
-            transform: perspective(1000px) rotateY(15deg) rotateX(5deg);
-            transition: transform 0.8s;
         }
 
-        .hero-img-container:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
-
-        .hero-phone-mockup {
-            width: 280px;
-            height: 580px;
-            background: #000;
-            border-radius: 40px;
-            border: 8px solid #1a1a1a;
+        .phone-container {
+            width: 320px; height: 640px;
+            background: #111;
+            border: 12px solid #222;
+            border-radius: 45px;
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
-            margin: 0 auto;
+            box-shadow: 0 0 100px rgba(0,0,0,0.8);
+            transform: rotate(-5deg);
         }
 
-        .hero-phone-screen {
-            width: 100%;
-            height: 100%;
+        .phone-screen {
+            width: 100%; height: 100%;
             background-image: url('iworkerapp.webp');
             background-size: cover;
             background-position: center;
         }
 
-        .hero-text { flex: 1; padding-left: 60px; }
-        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; }
-        .hero h1 span { color: var(--brand-red); }
-        .hero p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 30px; max-width: 550px; line-height: 1.6; }
+        .phone-notch {
+            position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 140px; height: 25px;
+            background: #222; border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 5;
+        }
 
-        /* --- SECCIÓN CONÓCEME (PERFIL) --- */
-        .conoceme-section {
-            padding: 100px 5%;
-            background: #0f0f0f;
+        /* --- SECCIÓN PERFIL MEJORADA --- */
+        .profile-section {
+            padding: 120px 10%;
             display: flex;
             align-items: center;
-            border-top: 1px solid #222;
+            gap: 60px;
+            background: linear-gradient(to bottom, transparent, #0a0a0a);
         }
 
-        .conoceme-text { flex: 1.2; padding-right: 50px; }
-        .conoceme-text h2 { font-size: 3.5rem; font-family: 'Montserrat', sans-serif; margin-bottom: 20px; }
-        .conoceme-text h2 span { color: var(--brand-red); }
-        .conoceme-text p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem; line-height: 1.7; }
-
-        .conoceme-img-container { flex: 0.8; display: flex; justify-content: center; position: relative; }
+        .profile-img-wrap { position: relative; }
         .profile-img {
-            width: 300px; height: 300px;
-            border-radius: 30px;
+            width: 380px; height: 380px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--brand-red);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            z-index: 2;
+            border: 8px solid var(--glass);
+            box-shadow: 0 0 50px rgba(255, 59, 0, 0.1);
         }
 
-        /* --- CARDS ROLES --- */
-        .cards-section-title { text-align: center; font-size: 2.8rem; margin: 80px 0 40px; font-family: 'Montserrat', sans-serif; }
-        .cards-section-title span { color: var(--brand-red); }
+        .profile-text { flex: 1; }
+        .profile-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem; margin-bottom: 20px;
+        }
+        .profile-text h2 span { color: var(--brand-red); }
+        .profile-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 15px; }
 
-        .cards-container {
-            padding: 0 5% 100px;
+        /* --- ROLES (CAJAS) --- */
+        .roles-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            padding: 0 8% 100px;
         }
 
-        .image-card {
-            height: 450px;
+        .role-card {
+            height: 500px;
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
             cursor: pointer;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .image-card img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
+        .role-card:hover { transform: translateY(-15px); }
+        .role-card img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .role-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex; flex-direction: column;
+            justify-content: flex-end; padding: 40px;
         }
 
-        .card-overlay-gradient {
-            position: absolute;
-            inset: 0;
-            opacity: 0.8;
-            transition: opacity 0.4s;
-            z-index: 2;
-        }
+        .role-card h3 { font-size: 2rem; font-family: 'Montserrat', sans-serif; }
+        .role-card p { color: rgba(255,255,255,0.7); }
 
-        .card-content { position: absolute; bottom: 40px; left: 30px; z-index: 3; }
-        .card-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; }
-        .card-subtitle { color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.4; }
-
-        .image-card:hover img { transform: scale(1.1); }
-        .card-user .card-overlay-gradient { background: linear-gradient(to top, rgba(255, 59, 0, 0.9), transparent); }
-        .card-worker .card-overlay-gradient { background: linear-gradient(to top, rgba(44, 62, 80, 0.9), transparent); }
-        .card-entrepreneur .card-overlay-gradient { background: linear-gradient(to top, rgba(72, 0, 72, 0.9), transparent); }
-
-        /* --- MODAL SYSTEM --- */
+        /* --- MODALES REIMAGINADOS --- */
         .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-            backdrop-filter: blur(5px);
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.95);
+            display: none; align-items: center; justify-content: center;
+            z-index: 2000; backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
         }
 
         .modal-content {
-            background: var(--bg-card);
-            max-width: 700px;
-            width: 100%;
-            padding: 50px;
-            border-radius: 15px;
+            background: #111;
+            width: 90%; max-width: 800px;
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
             position: relative;
-            border: 1px solid #333;
-            max-height: 85vh;
-            overflow-y: auto;
+            max-height: 85vh; overflow-y: auto;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 20px; right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--text-muted);
+        .close-btn {
+            position: absolute; top: 30px; right: 30px;
+            font-size: 2rem; cursor: pointer; color: var(--text-muted);
         }
 
-        .modal-body h2 { color: var(--brand-red); margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-        .modal-body p { margin-bottom: 15px; line-height: 1.8; color: var(--text-muted); }
-        .modal-body ul { margin-left: 20px; margin-bottom: 15px; color: var(--text-muted); }
-        .modal-body li { margin-bottom: 10px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         footer {
-            text-align: center;
-            padding: 60px;
-            background: #080808;
-            border-top: 1px solid #222;
+            padding: 80px; text-align: center;
+            border-top: 1px solid var(--glass-border);
         }
-        footer span { color: var(--brand-red); font-weight: 800; }
 
-        @media (max-width: 1000px) {
-            .hero { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
-            .hero-text { padding-left: 0; margin-top: 40px; }
-            .hero h1 { font-size: 3rem; }
-            .hero-img-container { max-width: 100%; transform: none; }
-            .nav-links { display: none; }
-            .conoceme-section { flex-direction: column; text-align: center; }
-            .conoceme-text { padding-right: 0; margin-bottom: 40px; }
-            .cards-container { grid-template-columns: 1fr; }
+        @media (max-width: 1100px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+            .hero-visual { display: none; }
+            .profile-section { flex-direction: column; }
+            .roles-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-container">
-            <img src="iworker_logotitle.png" alt="iWorker Logo">
-        </div>
+        <div class="nav-brand">iWorker</div>
         <div class="nav-links">
             <button onclick="openModal('quien')">Conóceme</button>
             <button onclick="openModal('mision')">Misión</button>
@@ -265,164 +248,83 @@
             <button onclick="openModal('donaciones')">Donaciones</button>
             <button onclick="openModal('sponsor')">Sponsors</button>
             <button onclick="openModal('contacto')">Contacto</button>
-            <button onclick="openModal('faq')">FAQ</button>
         </div>
-        <div class="nav-actions">
-            <a href="https://www.iworker.com.ar" class="btn btn-primary">Descárgalo Ahora</a>
-        </div>
+        <button class="btn-beta">Únete a la BETA</button>
     </nav>
 
     <header class="hero">
-        <div class="hero-img-container">
-            <div class="hero-phone-mockup">
-                <div class="hero-phone-screen"></div>
-            </div>
+        <div class="hero-content">
+            <h1>Talento Local <span>Sin Límites.</span></h1>
+            <p>Soy Alejandro Simos. He creado iWorker para conectar de forma directa a trabajadores independientes con su comunidad. Sin comisiones, sin intermediarios, solo oportunidades.</p>
+            <button class="btn-beta" onclick="openModal('faq')">Próximamente: BETA Abierta</button>
         </div>
-        
-        <div class="hero-text">
-            <h1>Talento Local <br><span>Sin Límites</span></h1>
-            <p>La plataforma argentina que conecta a trabajadores independientes, emprendedores y usuarios en una comunidad justa, directa y sin comisiones ocultas.</p>
-            <a href="#" class="btn btn-primary" onclick="openModal('faq')">¿Cómo funciona?</a>
+        <div class="hero-visual">
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"></div>
+            </div>
         </div>
     </header>
 
-    <section class="conoceme-section">
-        <div class="conoceme-text">
-            <h2>Sobre el <span>Creador</span></h2>
-            <p>Soy <strong>Alejandro Simos</strong>, Analista en Infraestructura IT y Desarrollador. iWorker nace de la convicción de que la tecnología debe ser un puente, no una barrera, para el crecimiento de nuestra comunidad en Comodoro Rivadavia y toda Argentina.</p>
-            <button class="btn btn-primary" onclick="openModal('quien')">Mi Historia</button>
-        </div>
-        <div class="conoceme-img-container">
+    <section class="profile-section">
+        <div class="profile-img-wrap">
             <img src="perfil.webp" alt="Alejandro Simos" class="profile-img">
+        </div>
+        <div class="profile-text">
+            <h2>Detrás de <span>iWorker</span></h2>
+            <p>Mi nombre es <strong>Alejandro Simos</strong>. Actualmente me desempeño como <strong>Administrador de Redes Informáticas</strong> en la Municipalidad de Comodoro Rivadavia, donde gestiono infraestructura crítica utilizando tecnología HUAWEI.</p>
+            <p>Con formación en Ingeniería y como <strong>Analista Programador Universitario</strong> de la UNPSJB, decidí fundar iWorker en 2024. Mi objetivo es aplicar mi experiencia técnica en Networking y Desarrollo para empoderar a los trabajadores locales, brindándoles una plataforma robusta, segura y fácil de usar.</p>
+            <p>Este proyecto representa la unión entre mi trayectoria técnica y mi compromiso social con el desarrollo económico de nuestra región.</p>
         </div>
     </section>
 
-    <h2 class="cards-section-title">Ecosistema <span>iWorker</span></h2>
-
-    <section class="cards-container">
-        <div class="image-card card-user">
+    <section class="roles-grid">
+        <div class="role-card" onclick="location.href='user.html'">
             <img src="iworkeruser.webp" alt="Usuario">
-            <div class="card-overlay-gradient"></div>
-            <div class="card-content">
-                <div class="card-title">Usuario</div>
-                <div class="card-subtitle">Encuentra al profesional ideal para tu hogar u oficina en segundos.</div>
+            <div class="role-overlay">
+                <h3>Usuario</h3>
+                <p>Encuentra soluciones profesionales a un clic de distancia.</p>
             </div>
         </div>
-
-        <div class="image-card card-worker">
+        <div class="role-card" onclick="location.href='worker.html'">
             <img src="iworkerworker.webp" alt="Worker">
-            <div class="card-overlay-gradient"></div>
-            <div class="card-content">
-                <div class="card-title">Worker</div>
-                <div class="card-subtitle">Digitaliza tu oficio, gestiona tus clientes y aumenta tus ingresos.</div>
+            <div class="role-overlay">
+                <h3>Worker</h3>
+                <p>Tu oficio digitalizado y conectado con nuevos clientes.</p>
             </div>
         </div>
-
-        <div class="image-card card-entrepreneur">
+        <div class="role-card" onclick="location.href='entrepreneur.html'">
             <img src="iworkerentrepreneur.webp" alt="Emprendedor">
-            <div class="card-overlay-gradient"></div>
-            <div class="card-content">
-                <div class="card-title">Emprendedor</div>
-                <div class="card-subtitle">Tu vitrina digital disponible 24/7 para mostrar tus productos.</div>
+            <div class="role-overlay">
+                <h3>Emprendedor</h3>
+                <p>Publica tu vitrina y expande tu negocio localmente.</p>
             </div>
         </div>
     </section>
 
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalBody" class="modal-body">
-                </div>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
         </div>
     </div>
 
     <footer>
-        iWorker: Tecnología social para <span>tu crecimiento</span>.
+        <p>iWorker: <strong>Conectando Talentos</strong> | 2026</p>
     </footer>
 
     <script>
         const contentData = {
             "quien": {
-                title: "👤 ¿Quién soy?",
-                text: `
-                    <p>Mi nombre es <strong>Alejandro Simos</strong>. Actualmente trabajo como administrador de redes informáticas en la Municipalidad de Comodoro Rivadavia, con experiencia en tecnología HUAWEI y gestión de infraestructura crítica[cite: 66, 70].</p>
-                    <p>La programación comenzó como un hobby, pero se transformó en <strong>iWorker</strong>: un proyecto que busca visibilizar el talento de los trabajadores independientes y pequeños emprendedores que no tienen un espacio en las grandes estructuras corporativas[cite: 63, 81].</p>
-                    <p>Como ex-estudiante de Ingeniería de la UNPSJB, enfoco mi conocimiento en crear herramientas útiles que reduzcan la brecha digital en nuestra región[cite: 63, 102].</p>
-                `
+                title: "👤 Mi Historia",
+                text: `<p>Soy Alejandro Simos. Inicié iWorker como una respuesta a la falta de visibilidad del talento local. Como técnico especialista en infraestructura, busco que la tecnología simplifique la vida de los trabajadores en Comodoro Rivadavia.</p>`
             },
             "mision": {
                 title: "🚀 Misión",
-                text: `
-                    <p>Conectar de forma simple, directa y transparente a personas con necesidades reales con trabajadores dispuestos a resolverlas.</p>
-                    <ul>
-                        <li><strong>Conectar:</strong> Sin intermediarios innecesarios.</li>
-                        <li><strong>Visibilizar:</strong> Exposición real al trabajo local.</li>
-                        <li><strong>Simplificar:</strong> Herramientas claras y accesibles.</li>
-                        <li><strong>Respetar:</strong> Modelos justos sin condiciones abusivas.</li>
-                    </ul>
-                `
+                text: `<p>Conectar de forma simple, directa y transparente a personas que necesitan resolver un problema con trabajadores y emprendedores dispuestos a hacerlo. Sin comisiones ocultas.</p>`
             },
             "vision": {
                 title: "🌱 Visión",
-                text: `
-                    <p>Convertirse en la plataforma de referencia regional para el trabajo independiente.</p>
-                    <ul>
-                        <li>Consolidar una comunidad basada en la confianza.</li>
-                        <li>Expandirse gradualmente a otras ciudades.</li>
-                        <li>Demostrar que la tecnología puede ser socialmente responsable.</li>
-                    </ul>
-                `
+                text: `<p>Convertirnos en la plataforma de referencia regional para el trabajo independiente, demostrando que es posible crear tecnología útil sin explotar a quienes la usan.</p>`
             },
             "donaciones": {
-                title: "❤️ Donaciones",
-                text: `
-                    <p>iWorker es gratuito. Las donaciones voluntarias mantienen viva la infraestructura técnica (servidores y seguridad) y permiten la mejora continua de la plataforma.</p>
-                `
-            },
-            "sponsor": {
-                title: "✨ Sponsors",
-                text: `
-                    <p>Buscamos organizaciones que compartan nuestra visión de inclusión laboral y desarrollo local. Ser sponsor ofrece visibilidad dentro de una comunidad activa y comprometida.</p>
-                `
-            },
-            "contacto": {
-                title: "✉️ Contacto",
-                text: `
-                    <p><strong>Email:</strong> enemydev.iworker@gmail.com</p>
-                    <p>Ubicación: Av. Fray Luís Beltrán 932, Comodoro Rivadavia.</p>
-                `
-            },
-            "faq": {
-                title: "❓ Preguntas Frecuentes",
-                text: `
-                    <ul>
-                        <li><strong>¿Es gratuito?</strong> Sí, el registro y uso básico no tienen costo.</li>
-                        <li><strong>¿Garantizan el trabajo?</strong> No, somos una herramienta de visibilidad; el acuerdo es privado entre las partes.</li>
-                        <li><strong>¿Necesito seguro?</strong> Recomendamos a los Workers contar con Seguro de Accidentes Personales para su tranquilidad.</li>
-                    </ul>
-                `
-            }
-        };
-
-        function openModal(key) {
-            const modal = document.getElementById('infoModal');
-            const body = document.getElementById('modalBody');
-            const data = contentData[key];
-            
-            body.innerHTML = `<h2>${data.title}</h2>${data.text}`;
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('infoModal');
-            if (event.target == modal) closeModal();
-        }
-    </script>
-</body>
-</html>
