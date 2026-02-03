@@ -339,8 +339,8 @@
         }
 
         .role-card {
-            /* CAMBIO: De 4/5 a 1/1 para que sean cuadradas */
-            aspect-ratio: 1 / 1; 
+            /* CAMBIO: Relación de aspecto 4:5 (Rectángulo vertical suave) */
+            aspect-ratio: 4 / 5; 
             position: relative;
             border-radius: 12px;
             overflow: hidden;
@@ -512,12 +512,11 @@
         footer strong { color: white; }
 
         /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 1000px) {
-            /* Ajuste del wrapper de contenido en mobile */
-            .hero-content-wrapper {
-                flex-direction: column; 
-                text-align: center; 
-            }
+        @media (max-width: 600px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            /* En celular mantenemos una proporción casi cuadrada para no ocupar toda la pantalla */
+            .role-card { aspect-ratio: 1 / 1.1; } 
+        }
             
             .hero-text { padding-right: 0; margin-bottom: 60px; }
             .hero h1 { font-size: 3.5rem; }
