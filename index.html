@@ -67,9 +67,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            position: relative;
+            padding: 20px 5%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            /* ESTAS PROPIEDADES LA HACEN FIJA EN MOBILE Y PC: */
+            position: fixed; 
+            width: 100%;
+            top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .logo-text { 
