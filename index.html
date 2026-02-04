@@ -87,7 +87,42 @@
             letter-spacing: -1px; 
         } 
         .logo-text span { color: var(--brand-primary); } 
-         
+
+        /* --- NUEVOS ESTILOS PARA LOGO EN NAVBAR --- */
+        .brand-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px; /* Espacio no exagerado entre texto y logo */
+        }
+
+        /* Estilo del pequeño logo en la barra */
+        .nav-logo-img {
+            height: 42px; /* Altura acorde al texto */
+            width: auto;
+            /* Fondo acorde al estilo: sutil naranja oscuro translúcido */
+            background: rgba(255, 69, 0, 0.08);
+            border: 1px solid rgba(255, 69, 0, 0.25); /* Borde sutil */
+            border-radius: 10px; /* Bordes redondeados modernos */
+            padding: 4px; /* Espacio interno */
+            /* Pequeño resplandor naranja */
+            box-shadow: 0 0 15px -5px var(--brand-glow);
+            transition: var(--transition);
+        }
+
+        /* Efecto al pasar el mouse sobre la marca */
+        .brand-container:hover .nav-logo-img {
+            box-shadow: 0 0 25px -2px var(--brand-glow);
+            border-color: var(--brand-primary);
+            transform: scale(1.03);
+        }
+
+        /* Ajuste en mobile para que no ocupe tanto espacio si es necesario */
+        @media (max-width: 400px) {
+            .nav-logo-img { height: 35px; gap: 8px; }
+            .logo-text { font-size: 1.7rem; }
+        }
+        
         .nav-links { display: flex; gap: 30px; align-items: center; } 
          
         .nav-links button {  
@@ -605,8 +640,10 @@
 <body> 
 
     <nav>
-        <a href="#" class="logo-text">iWorker<span>.</span></a>
-        
+<a href="#" class="brand-container">
+            <span class="logo-text">iWorker<span>.</span></span>
+            <img src="logo.png" alt="iWorker Logo" class="nav-logo-img">
+        </a>        
         <div class="nav-mobile-right">
             <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
             <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
