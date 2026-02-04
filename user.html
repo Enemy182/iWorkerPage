@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>iWorker - Modo Usuario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CONFIGURACIÓN GENERAL (IGUAL AL INDEX) --- */
+        :root {
+            --brand-primary: #FF4500; 
+            --brand-glow: rgba(255, 69, 0, 0.6);
+            --bg-dark: #050505;
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR (IGUAL AL INDEX) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Estilos del Logo en Navbar */
+        .brand-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+        .logo-text {
+            font-family: var(--font-head);
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+        .logo-text span { color: var(--brand-primary); }
+        
+        .nav-logo-img {
+            height: 42px;
+            width: auto;
+            background: rgba(255, 69, 0, 0.08);
+            border: 1px solid rgba(255, 69, 0, 0.25);
+            border-radius: 10px;
+            padding: 4px;
+            box-shadow: 0 0 15px -5px var(--brand-glow);
+            transition: var(--transition);
+        }
+        .brand-container:hover .nav-logo-img {
+            box-shadow: 0 0 25px -2px var(--brand-glow);
+            border-color: var(--brand-primary);
+            transform: scale(1.03);
+        }
+
+        /* Links de Navegación */
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        
+        .nav-links button { 
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px; 
+            font-weight: 500; 
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            position: relative;
+        }
+
+        .nav-links button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--brand-primary);
+            transition: var(--transition);
+        }
+        .nav-links button:hover { color: white; }
+        .nav-links button:hover::after { width: 100%; }
+
+        /* Botón Hamburguesa */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Botones Beta */
+        .nav-cta-desktop {
+            background: var(--brand-primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            display: inline-block;
+        }
+        .nav-cta-mobile { display: none; }
+
+        /* --- CONTENIDO ESPECÍFICO DE USER.HTML --- */
+        .page-content {
+            padding: 160px 8% 100px 8%;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 20%, rgba(255, 69, 0, 0.08) 0%, transparent 70%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: var(--font-head);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .page-title span { color: var(--brand-primary); }
+
+        .page-description {
+            max-width: 700px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            line-height: 1.8;
+        }
+
+        /* --- REPRODUCTOR DE VIDEO --- */
+        .video-wrapper {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px -10px rgba(255, 69, 0, 0.2); /* Glow naranja */
+            overflow: hidden;
+        }
+
+        .video-container video, 
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Fondo decorativo detrás del video */
+        .bg-glow-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,69,0,0.15) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- MODALES (IGUAL AL INDEX) --- */
+        .modal-backdrop {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-container {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            max-height: 85vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-container::-webkit-scrollbar { width: 8px; }
+        .modal-container::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .modal-backdrop.active { display: flex; opacity: 1; }
+        .modal-backdrop.active .modal-container { transform: scale(1); }
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .modal-close:hover { background: var(--brand-primary); }
+        .modal-title { color: var(--brand-primary); font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 20px; }
+        .modal-body { color: #ddd; font-size: 1rem; line-height: 1.7; }
+        .modal-body ul { padding-left: 20px; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        footer strong { color: white; }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 1000px) {
+            .hamburger-btn { display: block; }
+            .nav-cta-desktop { display: none; }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+                gap: 20px;
+                animation: slideDown 0.3s ease;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links button { font-size: 1.1rem; padding: 10px; width: 100%; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-cta-mobile { display: inline-block; text-align: center; background: var(--brand-primary); color: white; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 10px; text-decoration: none; }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+            
+            /* Ajustes Página Usuario en Mobile */
+            .page-title { font-size: 2.5rem; }
+            .page-content { padding-top: 120px; }
+            
+            /* Logo Navbar Mobile */
+            .nav-logo-img { height: 35px; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="brand-container">
+            <span class="logo-text">iWorker<span>.</span></span>
+            <img src="logo.png" alt="iWorker Logo" class="nav-logo-img">
+        </a>
+        
+        <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+
+        <div class="nav-links" id="navLinks">
+            <button onclick="openModal('mision'); toggleMenu()">Misión</button>
+            <button onclick="openModal('vision'); toggleMenu()">Visión</button>
+            <button onclick="openModal('donaciones'); toggleMenu()">Donaciones</button>
+            <button onclick="openModal('sponsor'); toggleMenu()">Sponsors</button>
+            <button onclick="openModal('faq'); toggleMenu()">FAQ</button>
+            <button onclick="openModal('contacto'); toggleMenu()">Contacto</button>
+            <a href="#" class="nav-cta-mobile" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
+        </div>
+
+        <a href="#" class="nav-cta-desktop" onclick="alert('¡Gracias por tu interés! La Beta se abrirá muy pronto.')">BETA</a>
+    </nav>
+
+    <div class="page-content">
+        <h1 class="page-title">Rol: <span>Usuario</span></h1>
+        
+        <div class="page-description">
+            <p>Bienvenido al lado de quien busca soluciones. Como Usuario en iWorker, tienes el poder de encontrar talento local verificado en segundos, sin intermediarios y con total libertad de elección.</p>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="bg-glow-video"></div>
+            <div class="video-container">
+                <video controls poster="iworkeruser.webp">
+                    <source src="video_tutorial_usuario.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal(event)">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal(null, true)">&times;</button>
+            <h2 id="modalTitle" class="modal-title">Título</h2>
+            <div id="modalBody" class="modal-body">Contenido...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>iWorker</strong>. Tecnología social para el crecimiento local.</p>
+    </footer>
+
+    <script>
+        const contentData = {
+            "mision": {
+                title: "🚀 Misión",
+                text: `<p>Conectar de forma simple, directa y transparente a personas con necesidades reales con trabajadores dispuestos a resolverlas.</p><ul><li><strong>Conectar:</strong> Sin intermediarios innecesarios.</li><li><strong>Visibilizar:</strong> Exposición real al trabajo local.</li><li><strong>Simplificar:</strong> Herramientas claras y accesibles.</li><li><strong>Respetar:</strong> Modelos justos sin condiciones abusivas.</li></ul>`
+            },
+            "vision": {
+                title: "🌱 Visión",
+                text: `<p>Convertirse en la plataforma de referencia regional para el trabajo independiente.</p><ul><li>Consolidar una comunidad basada en la confianza.</li><li>Expandirse gradualmente a otras ciudades.</li><li>Demostrar que la tecnología puede ser socialmente responsable.</li></ul>`
+            },
+            "donaciones": {
+                title: "❤️ Donaciones",
+                text: `<p>iWorker es gratuito. Las donaciones voluntarias mantienen viva la infraestructura técnica (servidores y seguridad) y permiten la mejora continua de la plataforma.</p>`
+            },
+            "sponsor": {
+                title: "✨ Sponsors",
+                text: `<p>Buscamos organizaciones que compartan nuestra visión de inclusión laboral y desarrollo local. Ser sponsor ofrece visibilidad dentro de una comunidad activa y comprometida.</p>`
+            },
+            "contacto": {
+                title: "✉️ Contacto",
+                text: `<p><strong>Email:</strong> enemydev.iworker@gmail.com</p>`
+            },
+            "faq": {
+                title: "❓ Preguntas Frecuentes",
+                text: `<ul><li><strong>¿Es gratuito?</strong> Sí, el registro y uso básico no tienen costo.</li><li><strong>¿Garantizan el trabajo?</strong> No, somos una herramienta de visibilidad; el acuerdo es privado entre las partes.</li><li><strong>¿Necesito seguro?</strong> Recomendamos a los Workers contar con Seguro de Accidentes Personales para su tranquilidad.</li></ul>`
+            }
+        };
+
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+
+        function openModal(key) {
+            const data = contentData[key];
+            if(!data) return;
+            modalTitle.innerHTML = data.title;
+            modalBody.innerHTML = data.text;
+            modalBackdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event, force = false) {
+            if (force || event.target === modalBackdrop) {
+                modalBackdrop.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            } else {
+                nav.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
